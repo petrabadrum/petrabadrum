@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Petra Bygg – Badrumsapp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- App-ikon för iPhone -->
+<link rel="apple-touch-icon" href="data:image/jpeg;base64,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pra/zlVyaqLYYiPtTxM/lCeunmMkzPTt+svhwPB54ZYg6jjLmzSPkqXGJzix2bKWm+Zp1sps2fHek7XnpG1f+UeLDeto3r3nkwbBqiGWMGijLhO98lS4xOcWG5Bab5mnVYz58d6zteekbVMOG9Zj5Y6zvL7ds8IlnlgfHD1rWCQO/RE3dly9mXskaKPRZ6Y62ibbTx6/7N9Xhtkmu0btls9Ryx0QjlAElndhjY2tbe9mjJp4+sqDPels3mp0T4qWjF5Z6o5s3szNFNTPfC2MRxPuYxHmMjg5pbM4Ou4WNwQPBXdRq6XpaKzPMx19I9FPBpr1mszG20fVjZvZ+eK4fTlrurmbntSkXcHZe2POa3A32TU6qmSPlt6cc9vozp8F6TzX1547u3C9nqmGSkYG3p2uZUPBc28UwieyRo11BLr6f/WXVYskXtP2uYj8+eP2MenyUmkR033/AEfPBs7OHRt8lAkbVde6q6yPtRZibb83HctrarHMTPn4mu3l27sRp77xHl7zO/5NgdnpfKuqyjyIz+Wk3Hp5f0eXuz691lD/AFVPheaft7eX29f2S/09vibR9nfd89LgUza58rqfM11SZWvApHWYXAg3f229+i2tqazgikW7fn/8a1wWjNNvL3/J00mzE4nikdC1rRVPnc9ojMtg8uZd2b0CDqBqLblvbW0nHNYmZ+WI/JpXTW88TMd5n6vol2clkjkikjIY/EZKg2cy/UOa4B+/vI03rSNXWtq2rPSkR7t/6e9omJ/ymfZ1uwKtfBWRyAOkcyCJj84HWtieSSddCWm2vErb+owVvSa9I3mfymf+GvwMs1tFuekfrs3GzFJIySUmjjpIi2MNDOrzFwBzZnMOovuv3qrqslbRX55tP8LGnraszvXaGqxDCq11W6tbG3NHKxsbC8Z3QNuHAG+UB2dx1N/zsY8+CuH4Mz1id57bob4ss5PiRHSfo+PG9nKmSpnkZT5w+SN7HF0AFmht7knO3dwUuDVYq4q1m23E7xz/AO/dHl097ZJmI7xssRq47pwyjIgICAgICAgICDpjDra+G+3r3LPDHLmy/FY2gcWh3Hw9+qyMHNrw7t3f/BOBl4drbXdbduQ5O1c6acPYP5rERBywXO003/dz9SztAxmdY2brw4d/8k2g3lyfmsbDuty4pwOZusDi8G4tu47lkYObu4nu3cOKcDLs2thyTg5Y7V/C336/yWODkGbu92638U2gY7djoL8PafyWeBzN7Dv0/msDh2tdOOm7csnLtCwzDKAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/2Q=="/>
+
+<style>
+    :root {
+        --petra-dark: #003c8f;
+        --petra-main: #007bff;
+        --petra-light: #e2e8f0;
+        --bg-body: #eef2f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: -apple-system, system-ui, -webkit-system-font, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--bg-body);
+        color: #0f172a;
+    }
+
+    header {
+        background: linear-gradient(135deg, var(--petra-dark), var(--petra-main));
+        color: #ffffff;
+        padding: 20px 16px 16px 16px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header img.logo {
+        width: 90px;
+        height: auto;
+        margin-bottom: 6px;
+    }
+
+    header .title {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+    }
+
+    header .subtitle {
+        font-size: 13px;
+        opacity: 0.9;
+        margin-top: 2px;
+    }
+
+    .container {
+        padding: 12px;
+        max-width: 900px;
+        margin: 0 auto 40px auto;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-bottom: 14px;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+        border: 1px solid #e2e8f0;
+    }
+
+    h2 {
+        font-size: 17px;
+        margin: 0 0 8px 0;
+        color: var(--petra-dark);
+        font-weight: 700;
+    }
+
+    .section-caption {
+        font-size: 11px;
+        color: #64748b;
+        margin-bottom: 8px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+    }
+
+    label {
+        font-size: 13px;
+        flex: 1 1 55%;
+        padding-right: 8px;
+        font-weight: 600;
+        color: #1e293b;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        flex: 1 1 45%;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+    }
+
+    input[type="number"] { -moz-appearance: textfield; }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+    textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        resize: vertical;
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.1);
+        margin-right: 6px;
+    }
+
+    .checkbox-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .checkbox-row label {
+        flex: 0 1 auto;
+        font-weight: 500;
+    }
+
+    .price-box {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--petra-dark);
+        margin-bottom: 4px;
+    }
+
+    .price-details {
+        font-size: 12px;
+        color: #6b7280;
+        margin-bottom: 8px;
+    }
+
+    .small {
+        font-size: 11px;
+        color: #6b7280;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 11px;
+        border-radius: 999px;
+        border: none;
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 8px;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: var(--petra-main);
+        color: #ffffff;
+    }
+
+    .btn-secondary {
+        background: var(--petra-light);
+        color: #0f172a;
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 1px solid var(--petra-main);
+        color: var(--petra-main);
+    }
+
+    .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+    }
+
+    .btn-row .btn {
+        flex: 1 1 calc(50% - 4px);
+    }
+
+    @media (max-width: 600px) {
+        .row { flex-direction: column; }
+        label { margin-bottom: 3px; }
+    }
+
+    @media print {
+        body { background: #ffffff; }
+        header { box-shadow: none; }
+        .btn, .btn-row { display: none !important; }
+        .card { box-shadow: none; border-color: #cbd5e1; }
+    }
+</style>
+</head>
+
+<body>
+<header>
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEBMQERAVEBEVFRUQFxUQEBAVFhgSFxYWFxUVFRUYHSggGBolGxUYITEhJSk3Li4vFx8zODMwNygtLysBCgoKDg0OGxAQGi0lICUtLS0tKy0tLS0tLS0tLTUtLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABgcBBQIDCAT/xABMEAABAwIDBAUGCgYGCwAAAAABAAIDBBEFEiEGMUFxBxMiUWEUIzKBkbEINUJSYnKCobPBM1NzwtHhNEODtNLwFRYXVFWSk6OksvH/xAAaAQEAAgMBAAAAAAAAAAAAAAAAAwQBAgUG/8QANBEBAAIBAwIEAwcDBQEBAAAAAAECAwQRITFBBRJRgRMioTI0QmFxkbEUM1IVwdHh8PGi/9oADAMBAAIRAxEAPwC8UBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQdcszWtLnODWgXJcQAB3kncsxEzO0MTMR1QnH9vmtuykGd27rHA5R9Vu93M6c11dN4Za3OXiPTu5+fXxXijGAbftdZlWMh3dYwHKfrN3t5jTks6nwuY5xc/l3Yw6+J4vwm8MzXtDmODmnUFpBBHgQuTMTE7S6NZiY3h2LDIgICAgICAgICAgICAgICAgICAgICAgxdYEa2g2zgp7sZ5+YaZWHstP038OQuVf0+gy5eZjaFPNrKU4jmVcY1js9U68r+zvDG6MHq4nxK7uDS4sMfLHPq5ObUXyTzLWqyhEGywbHJ6V14n2be5Y7Vh5t4HxGqrZ9LjzR80e6bFnvjniVjbP7aQVFmP8AMSnTK89lx+i/8jquHqdBkxcxzHq62DWUycTxKTXVBcZQEBAQEBAQEBAQEBAQEBAQEBAQYQavG9oIKVt5X9rgxurzyHAeJ0U+DTZM07Vj37IMuopijn9lcY/tjPU3Y09RFuysPaI+k/8AIac13dN4fjxc25n6OTn1l8nEcQji6HRUnkQEBAQEEiwDbCemsxx6+LdleTcD6Lt45HTkufqPD8eXmOJXMGsvj4nmFj4JtDBVDzT+3vMbtHj1cR4jRcPPpsmCdrx79nVw56ZY4/ZtbqunZQEBAQEBAQEBAQEBAQEBAQEEB6UtsZKDyeNnZE4lvIBdzer6u1h49Ydd+mi6Xhulpnm027K+o8/l+RXjaoS+cD+szalxcXEnxJ1vzXoYrFY2iNocLJF4n5/3clloICDZ4bgkktifNs73DU/VHHnuVbLqa04jmU+PBa6M4Zjcc1hfI8/Jdx+qePvVnbhtl016cxzDZorCAg7aRkheOqzZxqCy4I8QRu5rTJ5Ntr9G1Itv8q2dkKmodGW1L2vc21iBrY30cdxOm8D2rzOspjrbfG7mltea/PKQqotCAgICAgICAgICAgICAgICCmPhD+lQcqn3067ngvW/sjyKlpKt8RzRuLT9x5jiu9MboL0raNrQk2G7RMfZsto3d/yT6/k+v2qOa7Ofl0cxzTmEmoKCSY+bbccXHRo9agyZaY+sq1MV7Ttsk+G4FHFZzvOP73DQcm/mVzsupvfpxC7j09a9eZbZV46p4eb27gvR16J4bjDcfkjs1/nGeJ7Q5HjyKxNYVsulpfpxKUUFdHMLxuzH5vyhzCjnjq52TDek7TCSYbs699nS3jb3fKP+H/Oip5dXFeKcpMenm3MpLSUjIm5WNDR955niuffJa/Myu0pFeiQ7Nb5OTf3lR1XZawd2+VVYEBAQEBAQEBAQEBAQEBAQEFMfCH9Kg5VPvp13PBfx+yPIp9d5EILq6OPiyn/tfx5Fw9Z/en2/hDbqkqrMCzHUjq83t3Bejr0hPDKyJD0ffGdNzk/BkVbV/wBq3sxbou5cOUIg3WzO+Tk395VNV2WMHdvlVWBAQEBAQEBAQEBAQEBAQEBBTHwh/SoOVT76ddzwX8fsjyKfXeRCC6ujn4sp/wC2/HlXD1n96fb+IRW6pKqzV89ZWxxDNI63cOJ5BSY8drzw0vkrTmVA1uHyQm0jbDcHDVp5H8t69BWeNk+PJW8fK+ZZbpD0ffGdNzk/BkVbV/2rezFui7lw0Ig3WzO+Tk395VNV2WMHdvlVWBAQEBAQEBAQEBAQEBAQEBBTHwh/SoOVT76ddzwX8fsjyKfXeRCC6Oj2RrcKgc4hrR11yTYfp5VxNVEznmI/L+EN5iOZdmJbSb2wj7bh/wCrfzPsUuLR97qV9T2qj0srnEucS5x4k3Kv1rFeIVJmZ6uqRgcC1wDgdCCAQeYWStprO8Tyj+I7Ng9qA2PzHHT7LuHr+5bRf1X8Ws7XcdhYXMxSna9pa4GTQi39TIodVO+Gy75otXeF1riIhButmd8nJv7yqarssYO7fKqsCAgICAgICAgICAgICAgICCmPhD+lQcqn3067ngv4/ZHkU+u8iEG8wnaJ8bGwyXdC2+UDe3M4uOm46uJ79VHOKN/NtyrajT/E5iUmpapkjc0bg4eG8eBG8Fay5t8VqTzDuRGIO+kpHyuysaXHj3DmeC0vkrSN5bVpNuiS4Xs8yNzZX9uVty08GkgtNuJ0JC5ubUzfiOjoYcU07t2qqYQbrZnfJyb+8qmq7LGDu3yqrAgICAgICAgICAgICAgICAgpj4Q/pUHKp99Ou54L+P2R5FPrvIhAQdkE7mOzMcWu7x7j3hNt+rFqxaNpSPDtpAezMMp+e3d6xw/zuUc12UM2j25osLDtmybOmNh8xp19buHqXOzavbijTHpf80ihhaxoaxoa0cAFQtabTvK3EREbRDsWGRAQbzZpp7ZsbHKAeGl7qnqZjeFjBDeKssCAgICAgICAgICAgICAgICCmPhD+lQcqn3067ngv4/ZHkU+u8iEBAQcZNx5FJ6SPSJXm56oJ6iwCDsggc85WtLj4fmeC1taK9W1azbo3lDgjRrJ2j3D0f5qnfPM8VWKYturbtaBoNB4KBMygICAgICAgICAgICAgICAgIKY+EP6VByqffTrueC/j9keRT67yIQbWDBHyQNmjOYnNdh03OcOyfVuPtWs22lXtqa1vNLcNZIwtJa4FpG8EWIW26xExMbw65Nx5FYnpI9IlecnqhlloJNgLnuC1326sRzOzbUOCE6ydkfNG/1ngq2TURHFU9MXq3sEDWDK0Bo8FVmZnmViIiOjsWGRAQEBAQEBAQEBAQEBAQEBAQEFMfCH9Kg5VXvp13PBet/ZHkU+u8iEE12a/osf2/xHqO3VyNX/AHZ9v4fTXUEcws9tzwI0cOR/Lctd5hpjzWxzwi2LYBJGHOZ5xljqPSHMceYW/m4l0sWqpfieJeiaLCnyansN7zvPILy+XPWsymrjmZ5b+joWRjsjXi46k+tU75LW6rFaRXo+paNxAQEBAQEBAQEBAQEBAQEBAQEBAQa/GsFp6uIw1MLZmHg4ag97XDVp8QbrfHlvit5qTsxMRPVTO2PQ/NDeWgcaiPeYXkda0fROgkHsPNd7S+LVt8uXifXt/wBI7U9FYSxlrixzS1zTlc1wIcCN4IOoK7ETFo3id0cpns3/AEWP7f4j1pbq5Gr/ALs+38JLg2BT1TrRM7N7F7tGDmeJ8BqqmfVY8MfNPPp3a4tPfJ9mPdY2z+xkFPZ7/Py78zx2Wn6LPzOvJcLUa/Jl4jiPR1sGjpj5nmUmVBcZWQQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEEb2t2Ko8Qb5+PLKBZs0dmyDu1+UPB1wrOn1mXBPyTx6NbVierR7LdGkdO0Nnl8oDS7KA3I0guLgX6kk67gbc1cz+K5LxtSNlWdHW2Sb25/JPIYmsaGtaGtAsA0AADwAXLmZmd5W4iIjaHYsMiAgICAgICAgICAgICAgICAgICAgICAgXQEBAQEBAQLoCAgXTcEBAugICAgICAgICAgICAUHlzGducQnnklFbPE0uOVkM8kTGsucrQ1hAJtxOpXrcOiwUxxE1if1hBNp3dLMdxUgFtXiDgdQRUVhBHeCDqszh0sTtNa/Q3s4Q7X4lG8OGIVWZp3SVErxcbwWSEg8iFtOj09o+xHtB5pW5U7dzybOOr4y2OqDm0znNAID+sawvaDuJa4OA4E+C4kaGtdZ8K3Tqk83y7qhbtRiLjYYhWOcTYBtXU3JPAAO+4LuTpdPEbzSv7Qi3l9X+k8Y/X4l/1a7+Kj+Ho/Sn0Z3sm/RDW4g+vkbVS1j4/JpCBUvqSzPniykCQ2zWzeO9c7xKmCMcfDiu+/bZtSZ3QdmJ4zYXnxLd+trv4roxj0m0cV+jXez5pNpsRaS11fWtcNCHVdUCD3EF1wpI02nmN4pX9oY80u+HGcWe0OZVYg9p3OZPWuB5EGxWs4dLWdprX6M72TzZrH6+nwPEamWSd1QySNkTqsyuc0SGOPM3rb7i8m264XMz4MGTVY6ViNu+3/TaJnyzKuztXiLj8YVZJO5tXUDU8AA77gur/S4I/BH7Q080u5+O4qAS6rxBoGpJqKwADvJJ0WkYtJPEVr9Gd7PrwHpBxCllbIaqWojBBfHUSulDmcQC8ktNtxB3+w65vD8OSm0ViJ9YItL0zBMHsa9urXNDhyIuPevJzG07J3nzpK26qZq6aKnqZIqaFxhaIZHR5nN0ke4tILu1cDhYBem0Ghx1xRa9d5lDa078OHRzt1UwVsUc9TJLTSuETxNI6QNLtGPaXEltnEXtpYlZ12hx2xTalYiY54K2nd6KC8wmZQEBAQEBAQEBAQEHjdw3+te5p0j9FaV84T0t4bFTwxO6/MyKOM5YNLtaAba7tF5vJ4XqLXmY26+qaLwqfbzHI63EJqqFhjjfkAzABzsrA0vcBxNvYAu1osNsOGKW6o7TvKTUFOW7J1LjukrWvHIPgj97CqeSd/EYj0ht+BCdn8XfR1UVXG1r3xEuDZL5SS1zdbG/yl0c2GM2OaTO2/8As0idpT3/AG3Vv+7U3/e/xLnf6Nh/ylv8SUx6MukGoxKplhmiijayLrQYusvfMG2OZx01VDX6CmnpWazM7+rat91kLlN3lrpD+Nq79u73Bev0H3enHZXv1Xr0RfE1Jyk/FkXnvEfvN/1TV6Ovpj+JarnB/eIlnw37zX3/AIli/wBmVI9G7QcXori/ngdfBriF3/EONNf/AN3R1+0ufFulbDIjJH1j53NzNLY4XFriNC0OdZpHC+5cHF4ZqLxE7be6Wbw84n0fUvVx6oHprafGDh2DZ72mbBHTx3/XOYGA+NtXHwaV5HBh+PqPL+cz7J5naFC7DYN5ZiFPTnVheJJL6+aZ2335gZebl6XWZfhYbXj04/VDWN5c+kDBfJMRqacC0ebrI+7qpO00DwFy37K10Wb4uCtp692bRtL0B0cY/wCW4dDM43laOpl7+tZoSfrCzvtLzWtwfBzWr27JazvCTqq2EBAQEBAQEBAQEHjcnf617isbxH6QrT1W7h3Qr1sMcv8ApAt6xjJLeSg2zNDrX6zXeuLbxma2mPJ9f+kkY32U/QYwOHWYg9zeIZTtY48nF7gPYo7eM2mOKR+7Pw4bjpSwyKl2fdTQtyxRuga0Xuf0zSSTxJJJJ7yq/h+S2TVxa3Wd2bxtVSmytdDBWwTVMXXQMcS9mRr7tLXN9F2hsSD6l6HU473xWrSdpn/lFHVan+v+z/8Aw7/waf8AiuN/Q63/AD//AEk81Uh2H2swupqTDQ0vUSmNzy7yaKK7GltwS03OpGiq6rS6jHTzZbbx+u7atononq57Z5Z6Q/jau/bu9wXr9D92p+ivbqvboi+JqTlJ+NIvO+I/eb/qmr0dXTH8S1XOD+8RLPhv3mvv/El/sypLo1+N6L9r+45eg8Q+7X/93RV+0xt/so/Dasw6mB95IX98d/RJ+c24B9R4potVGoxxPeOpaNpSfoi2dw6rlD5pJHVUJ6zyd5YI3Bpu2Rthd7Rpdt9++4Kp+J59RjrtWI8s9+/u2pES7unjHusqoqFh7EA6x4H6547IPiGG/wBtY8HwbUnLPfiC89kLwLZGvrIzNS0zpYw4xlwkiYMwAJHbcCd43K/n1eDFPlyT9N2sVlnHNjq+kjE1VTOijzCPMZIX9o3sDkeSNx8EwazBlt5KTz+mzE1mEv6Cse6qsko3GzKhudlz/XRgmw+sy/8AyBUfF8HmxxkjrHVvjnsvpedSiAgICAgICAgICCoB0KUx0GIyE66BkPr4rs/6xlrH2P5ReWJ7rUw9jYoYow8ODWMiDrgZsoDfbouReZm0zsk3h39e2+XML7rZhf2LXafQ80NZtFhcFbTyUczuzJYdh7Q8OBDmub4ggHUKXDkvivGSvZiZieFcydCdMN9fK0cM0cIXVjxjJ/hH1aTWPVlvQjTkXFfKR3iOIrH+s5P8I+p8OG82H6OoMPqvKY6x07urdFlc2MaOLST2T9FV9X4hfPj8tq7fuzWI34lO21DSbBzSe4OC5+0t/NCtcd6JoKuplqjWvYZnl+VrIyLng0k67l1MXimTFjjHFejTyxPO/VNdlMLjoqWKibN1vVZhd2UON3Ofq0fWVDUZbZbzkmNt20THTdx2twiOvopaV83VMkLLvblNiyRj+Om9tvWs6fLbDki8R0J2mEN2e6Kqekq4ahtc+R8T8wY5sQubEWNjfirufxPJmxzSa8S1isRPVLdrsAp8RpzSyuDXXzMe0tL2PHFo5XBHEFU9PnyYL+evu2nyzwhNF0QRQyMnixOWOSN4LXtZEC144b/VY772V+/it71mtscctPLEd3LEeh+OeaWeXEZHSvcZXnqot7jfdfQcAOACxTxW2OsUrSNmZrE77yneyWDw0VLHSQv6xsYN3XF3Oc4uc51u8lc7UZb5sk5Ld20bbbQ57T4RFW0stHK7KJW6EWLmlpBa9oO+xAKYMtsWSL17Mzt0lAKDohhgnjlZiMjZY3tkbdkXpNIIBF72Pd4rpZPFcmSs1mnEo4rET1Wq1chKygICAgICAgICDBRhXWzmzdTFUU730+URukL3l0FrODgCC053b9xXY1Grx3xWrFuu3q5mHTXrkiZq3WH7Nlla4kHyWMmaBpLcrZpLZ7Dfpra/zlVyaqLYYiPtTxM/lCeunmMkzPTt+svhwPB54ZYg6jjLmzSPkqXGJzix2bKWm+Zp1sps2fHek7XnpG1f+UeLDeto3r3nkwbBqiGWMGijLhO98lS4xOcWG5Bab5mnVYz58d6zteekbVMOG9Zj5Y6zvL7ds8IlnlgfHD1rWCQO/RE3dly9mXskaKPRZ6Y62ibbTx6/7N9Xhtkmu0btls9Ryx0QjlAElndhjY2tbe9mjJp4+sqDPels3mp0T4qWjF5Z6o5s3szNFNTPfC2MRxPuYxHmMjg5pbM4Ou4WNwQPBXdRq6XpaKzPMx19I9FPBpr1mszG20fVjZvZ+eK4fTlrurmbntSkXcHZe2POa3A32TU6qmSPlt6cc9vozp8F6TzX1547u3C9nqmGSkYG3p2uZUPBc28UwieyRo11BLr6f/WXVYskXtP2uYj8+eP2MenyUmkR033/AEfPBs7OHRt8lAkbVde6q6yPtRZibb83HctrarHMTPn4mu3l27sRp77xHl7zO/5NgdnpfKuqyjyIz+Wk3Hp5f0eXuz691lD/AFVPheaft7eX29f2S/09vibR9nfd89LgUza58rqfM11SZWvApHWYXAg3f229+i2tqazgikW7fn/8a1wWjNNvL3/J00mzE4nikdC1rRVPnc9ojMtg8uZd2b0CDqBqLblvbW0nHNYmZ+WI/JpXTW88TMd5n6vol2clkjkikjIY/EZKg2cy/UOa4B+/vI03rSNXWtq2rPSkR7t/6e9omJ/ymfZ1uwKtfBWRyAOkcyCJj84HWtieSSddCWm2vErb+owVvSa9I3mfymf+GvwMs1tFuekfrs3GzFJIySUmjjpIi2MNDOrzFwBzZnMOovuv3qrqslbRX55tP8LGnraszvXaGqxDCq11W6tbG3NHKxsbC8Z3QNuHAG+UB2dx1N/zsY8+CuH4Mz1id57bob4ss5PiRHSfo+PG9nKmSpnkZT5w+SN7HF0AFmht7knO3dwUuDVYq4q1m23E7xz/AO/dHl097ZJmI7xssRq47pwyjIgICAgICAgICDpjDra+G+3r3LPDHLmy/FY2gcWh3Hw9+qyMHNrw7t3f/BOBl4drbXdbduQ5O1c6acPYP5rERBywXO003/dz9SztAxmdY2brw4d/8k2g3lyfmsbDuty4pwOZusDi8G4tu47lkYObu4nu3cOKcDLs2thyTg5Y7V/C336/yWODkGbu92638U2gY7djoL8PafyWeBzN7Dv0/msDh2tdOOm7csnLtCwzDKAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/2Q==" class="logo" alt="Petra Bygg & Renovering AB">
+    <div class="title">PETRA BYGG & RENOVERING AB</div>
+    <div class="subtitle">Offertunderlag – Badrumsrenovering</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Kunduppgifter</h2>
+        <div class="section-caption">Fylls i inför eller under kundbesök.</div>
+        <div class="row">
+            <label for="kundnamn">Kundnamn</label>
+            <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson">
+        </div>
+        <div class="row">
+            <label for="adress">Adress</label>
+            <input id="adress" type="text" placeholder="Gata, postnummer, ort">
+        </div>
+        <div class="row">
+            <label for="telefon">Telefon</label>
+            <input id="telefon" type="text">
+        </div>
+        <div class="row">
+            <label for="epost">E-post</label>
+            <input id="epost" type="text">
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Badrumsdata</h2>
+        <div class="row">
+            <label for="storlek">Badrumsstorlek (m²)</label>
+            <input id="storlek" type="number" step="0.1" min="0">
+        </div>
+        <div class="row">
+            <label for="takhöjd">Takhöjd (m)</label>
+            <input id="takhöjd" type="number" step="0.05" min="0">
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Ytskikt</h2>
+        <div class="row">
+            <label for="kakel_vägg">Kakelstorlek vägg</label>
+            <input id="kakel_vägg" type="text" placeholder="Ex. 30x60">
+        </div>
+        <div class="row">
+            <label for="fogfärg">Fogfärg</label>
+            <input id="fogfärg" type="text">
+        </div>
+        <div class="row">
+            <label for="klinker_golv">Klinker storlek golv</label>
+            <input id="klinker_golv" type="text" placeholder="Ex. 10x10">
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Funktioner & utrustning</h2>
+
+        <div class="checkbox-row">
+            <input id="wc_vägg" type="checkbox">
+            <label for="wc_vägg">Vägghängd toalett</label>
+        </div>
+        <div class="checkbox-row">
+            <input id="handdusch_wc" type="checkbox">
+            <label for="handdusch_wc">Handdusch vid toalett</label>
+        </div>
+        <div class="checkbox-row">
+            <input id="badkar" type="checkbox">
+            <label for="badkar">Badkar</label>
+        </div>
+        <div class="checkbox-row">
+            <input id="enbart_dusch" type="checkbox">
+            <label for="enbart_dusch">Enbart dusch</label>
+        </div>
+
+        <div class="row">
+            <label for="nischer">Nischer i väggar (antal)</label>
+            <input id="nischer" type="number" min="0" step="1">
+        </div>
+
+        <div class="checkbox-row">
+            <input id="tvättmaskin" type="checkbox">
+            <label for="tvättmaskin">Tvättmaskin inkl el &amp; avlopp</label>
+        </div>
+
+        <div class="row">
+            <label for="vattenledningar">Vattenledningar</label>
+            <select id="vattenledningar">
+                <option value="utan">Utanpåliggande</option>
+                <option value="infällda">Infällda</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <label for="golvvärme">Golvvärme</label>
+            <select id="golvvärme">
+                <option value="ingen">Ingen</option>
+                <option value="el">El</option>
+                <option value="vatten">Vatten</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <label for="handdukstork">Handdukstork</label>
+            <select id="handdukstork">
+                <option value="ingen">Ingen</option>
+                <option value="el">El</option>
+                <option value="vatten">Vatten</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <label for="spotlights">El, antal spotlights</label>
+            <input id="spotlights" type="number" min="0" step="1">
+        </div>
+
+        <div class="checkbox-row">
+            <input id="undertak" type="checkbox">
+            <label for="undertak">Undertak/sänkt tak</label>
+        </div>
+
+        <div class="checkbox-row">
+            <input id="behålla_dörr" type="checkbox" checked>
+            <label for="behålla_dörr">Behålla befintlig dörr &amp; tröskel</label>
+        </div>
+
+        <div class="row">
+            <label for="golvavlopp">Golvavlopp</label>
+            <select id="golvavlopp">
+                <option value="trad">Traditionellt</option>
+                <option value="unidrain">Unidrain</option>
+            </select>
+        </div>
+
+        <div class="row" style="margin-top:6px;">
+            <label for="badrumsinredning">Badrumsinredning (beskrivning)</label>
+        </div>
+        <textarea id="badrumsinredning" rows="2" placeholder="Kommod, spegelskåp, högskåp, blandare..."></textarea>
+
+        <div class="row" style="margin-top:6px;">
+            <label for="glas">Glaslösning (dörrar/vägg)</label>
+        </div>
+        <textarea id="glas" rows="2" placeholder="Glasvägg, vikdörrar, duschhörna..."></textarea>
+    </div>
+
+    <div class="card">
+        <h2>Preliminärt pris & offertunderlag</h2>
+        <p class="small">
+            Prototyp – prisnivåer är exempel. Justeras senare efter Petra Byggs kalkyl.
+        </p>
+
+        <div id="pris_text" class="price-box">–</div>
+        <div id="pris_detaljer" class="price-details"></div>
+
+        <div class="btn-row">
+            <button class="btn btn-primary" onclick="beräknaPris()">Beräkna pris</button>
+            <button class="btn btn-secondary" onclick="kopieraSammanfattning()">Kopiera sammanfattning</button>
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-secondary" onclick="skapaPDF()">Skapa PDF (skriv ut)</button>
+            <button class="btn btn-outline" onclick="skickaMail()">Maila offertunderlag</button>
+        </div>
+
+        <p class="small" style="margin-top:6px;">
+            PDF: På iPhone väljer du <strong>Skriv ut</strong> och sedan <strong>Spara som PDF</strong> via delningsmenyn.
+        </p>
+
+        <textarea id="sammanfattning" rows="7" style="margin-top:8px;" placeholder="Här visas sammanfattningen till entreprenör/offertsystem..."></textarea>
+    </div>
+
+</div>
+
+<script>
+function formatCurrency(value) {
+    if (isNaN(value)) return "-";
+    return value.toLocaleString('sv-SE', {
+        style: 'currency',
+        currency: 'SEK',
+        maximumFractionDigits: 0
+    });
+}
+
+function beräknaPris() {
+    const m2 = parseFloat(document.getElementById('storlek').value) || 0;
+    const wcVägg = document.getElementById('wc_vägg').checked;
+    const golvvärme = document.getElementById('golvvärme').value;
+    const nischer = parseInt(document.getElementById('nischer').value) || 0;
+    const tvätt = document.getElementById('tvättmaskin').checked;
+    const glasText = document.getElementById('glas').value.trim();
+    const golvavlopp = document.getElementById('golvavlopp').value;
+
+    // Exempelpriser exkl moms – kan justeras efter verklig kalkyl
+    const prisBaseM2 = 12000;
+    const prisWcVägg = 12000;
+    const prisGolvvärmeElM2 = 1500;
+    const prisUnidrain = 8000;
+    const prisNisch = 3500;
+    const prisTvätt = 6000;
+    const prisGlas = 9000;
+
+    let sumEx = 0;
+    let rader = [];
+
+    if (m2 > 0) {
+        const belopp = m2 * prisBaseM2;
+        sumEx += belopp;
+        rader.push("Basrenovering " + m2.toFixed(1) + " m²: " + formatCurrency(belopp));
+    }
+
+    if (wcVägg) {
+        sumEx += prisWcVägg;
+        rader.push("Vägghängd WC: " + formatCurrency(prisWcVägg));
+    }
+
+    if (golvvärme === "el" && m2 > 0) {
+        const belopp = m2 * prisGolvvärmeElM2;
+        sumEx += belopp;
+        rader.push("Golvvärme (el) " + m2.toFixed(1) + " m²: " + formatCurrency(belopp));
+    }
+
+    if (golvavlopp === "unidrain") {
+        sumEx += prisUnidrain;
+        rader.push("Unidrain golvavlopp: " + formatCurrency(prisUnidrain));
+    }
+
+    if (nischer > 0) {
+        const belopp = nischer * prisNisch;
+        sumEx += belopp;
+        rader.push("Nischer " + nischer + " st: " + formatCurrency(belopp));
+    }
+
+    if (tvätt) {
+        sumEx += prisTvätt;
+        rader.push("Förberedelse tvättmaskin (el & avlopp): " + formatCurrency(prisTvätt));
+    }
+
+    if (glasText.length > 0) {
+        sumEx += prisGlas;
+        rader.push("Glaslösning dusch: " + formatCurrency(prisGlas));
+    }
+
+    const sumInkl = sumEx * 1.25;
+
+    if (sumEx > 0) {
+        document.getElementById('pris_text').innerText = formatCurrency(sumInkl) + " inkl moms (preliminärt)";
+        document.getElementById('pris_detaljer').innerText =
+            "Exkl moms: " + formatCurrency(sumEx) + " • Moms 25%: " + formatCurrency(sumInkl - sumEx);
+    } else {
+        document.getElementById('pris_text').innerText = "–";
+        document.getElementById('pris_detaljer').innerText = "";
+    }
+
+    byggSammanfattning(sumInkl, rader);
+}
+
+function byggSammanfattning(sumInkl, prisrader) {
+    const kund = document.getElementById('kundnamn').value;
+    const adress = document.getElementById('adress').value;
+    const tel = document.getElementById('telefon').value;
+    const epost = document.getElementById('epost').value;
+
+    const m2 = document.getElementById('storlek').value;
+    const tak = document.getElementById('takhöjd').value;
+    const kakel = document.getElementById('kakel_vägg').value;
+    const fog = document.getElementById('fogfärg').value;
+    const klinker = document.getElementById('klinker_golv').value;
+
+    const wcVägg = document.getElementById('wc_vägg').checked ? "Ja" : "Nej";
+    const handdusch = document.getElementById('handdusch_wc').checked ? "Ja" : "Nej";
+    const badkar = document.getElementById('badkar').checked ? "Ja" : "Nej";
+    const enbartDusch = document.getElementById('enbart_dusch').checked ? "Ja" : "Nej";
+    const nischer = document.getElementById('nischer').value || "0";
+    const tvätt = document.getElementById('tvättmaskin').checked ? "Ja" : "Nej";
+    const vattenledningar = document.getElementById('vattenledningar').value;
+    const golvvärme = document.getElementById('golvvärme').value;
+    const handduk = document.getElementById('handdukstork').value;
+    const spots = document.getElementById('spotlights').value || "0";
+    const undertak = document.getElementById('undertak').checked ? "Ja" : "Nej";
+    const behållaDörr = document.getElementById('behålla_dörr').checked ? "Ja" : "Nej";
+    const golvavlopp = document.getElementById('golvavlopp').value === "unidrain" ? "Unidrain" : "Traditionellt";
+    const inredning = document.getElementById('badrumsinredning').value;
+    const glas = document.getElementById('glas').value;
+
+    let text = "";
+
+    text += "Kund: " + (kund || "-") + "\n";
+    text += "Adress: " + (adress || "-") + "\n";
+    if (tel) text += "Telefon: " + tel + "\n";
+    if (epost) text += "E-post: " + epost + "\n";
+    text += "\n";
+
+    text += "Badrum ca " + (m2 || "?") + " m², takhöjd " + (tak || "?") + " m.\n";
+    text += "Ytskikt: väggkakel " + (kakel || "?") + ", fogfärg " + (fog || "?") + ", klinker golv " + (klinker || "?") + ".\n\n";
+
+    text += "Funktioner och utrustning:\n";
+    text += "- Vägghängd WC: " + wcVägg + "\n";
+    text += "- Handdusch vid toalett: " + handdusch + "\n";
+    text += "- Badkar: " + badkar + "\n";
+    text += "- Enbart dusch: " + enbartDusch + "\n";
+    text += "- Nischer i väggar: " + nischer + " st\n";
+    text += "- Tvättmaskin inkl el & avlopp: " + tvätt + "\n";
+    text += "- Vattenledningar: " + vattenledningar + "\n";
+    text += "- Golvvärme: " + golvvärme + "\n";
+    text += "- Handdukstork: " + handduk + "\n";
+    text += "- Antal spotlights: " + spots + "\n";
+    text += "- Undertak/sänkt tak: " + undertak + "\n";
+    text += "- Behålla befintlig dörr & tröskel: " + behållaDörr + "\n";
+    text += "- Golvavlopp: " + golvavlopp + "\n";
+    text += "- Badrumsinredning: " + (inredning || "-") + "\n";
+    text += "- Glaslösning: " + (glas || "-") + "\n\n";
+
+    if (prisrader && prisrader.length > 0) {
+        text += "Prisuppdelning (preliminär, exkl moms):\n";
+        prisrader.forEach(function(rad) { text += "- " + rad + "\n"; });
+        text += "\n";
+    }
+
+    if (!isNaN(sumInkl) && sumInkl > 0) {
+        text += "Preliminärt totalpris (inkl moms): " + formatCurrency(sumInkl) + ".\n";
+        text += "Observera att detta är ett ungefärligt pris baserat på standardutförande. Slutlig offert lämnas av entreprenör efter genomgång av alla detaljer.";
+    } else {
+        text += "Preliminärt pris har inte beräknats ännu.";
+    }
+
+    document.getElementById('sammanfattning').value = text;
+}
+
+function kopieraSammanfattning() {
+    const textarea = document.getElementById('sammanfattning');
+    if (!textarea.value) {
+        beräknaPris();
+    }
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Sammanfattning kopierad. Klistra in i sms, mail eller offertsystem.");
+}
+
+function skapaPDF() {
+    if (!document.getElementById('sammanfattning').value) {
+        beräknaPris();
+    }
+    window.print();
+}
+
+function skickaMail() {
+    const kund = document.getElementById('kundnamn').value || "";
+    if (!document.getElementById('sammanfattning').value) {
+        beräknaPris();
+    }
+    const body = encodeURIComponent(document.getElementById('sammanfattning').value);
+    const subject = encodeURIComponent("Offertunderlag badrumsrenovering – " + kund);
+    window.location.href = "mailto:?subject=" + subject + "&body=" + body;
+}
+</script>
+
+</body>
+</html>
