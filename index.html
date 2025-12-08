@@ -23,21 +23,22 @@
       font-size: 16px;
     }
     header {
-      min-height: 100vh;            /* fyll hela skärmen första vyn */
+      min-height: 100vh;
       width: 100%;
-      background: linear-gradient(180deg, #0b1430, #1d4ed8);
+      background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 70%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;      /* centrera lodrätt */
+      justify-content: center;
       text-align: center;
       padding: 24px 16px 32px 16px;
       color: #ffffff;
     }
     header .logo {
-      width: 260px;                 /* större logga */
+      width: 240px;   
       height: auto;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.28));
     }
     header .title {
       font-size: 20px;
@@ -242,7 +243,9 @@
 <body>
 <header>
   <img src="petrabygg_logo.png" class="logo" alt="Petra Bygg & Renovering AB">
-  <div class="subtitle">Offertunderlag för badrumsrenovering</div>
+  <div class="subtitle" style="font-size:18px; opacity:0.95; margin-top:12px;">
+    Offertunderlag för badrumsrenovering
+  </div>
 </header>
 
 <div class="container">
