@@ -18,26 +18,26 @@
       font-family: -apple-system, system-ui, -webkit-system-font, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(180deg, var(--bg-body-top) 0, var(--petra-main) 160px, var(--bg-body-bottom) 160px);
+      background: #eef2f6;          /* ljus bakgrund för resten av sidan */
       color: #0f172a;
       font-size: 16px;
     }
     header {
-      padding: 18px 16px 14px 16px;
-      text-align: center;
+      min-height: 100vh;            /* fyll hela skärmen första vyn */
+      width: 100%;
+      background: linear-gradient(180deg, #0b1430, #1d4ed8);
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;      /* centrera lodrätt */
+      text-align: center;
+      padding: 24px 16px 32px 16px;
       color: #ffffff;
     }
     header .logo {
-  width: 140px;                /* gör loggan mycket större */
-  height: auto;
-  margin-bottom: 10px;
-  padding: 8px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.95);  /* vit “bricka” bakom loggan */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);  /* lite skugga så den poppar */
+      width: 180px;                 /* större logga */
+      height: auto;
+      margin-bottom: 16px;
     }
     header .title {
       font-size: 20px;
@@ -242,8 +242,7 @@
 <body>
 <header>
   <img src="petrabygg_logo.png" class="logo" alt="Petra Bygg & Renovering AB">
-  <div class="title">PETRA BYGG & RENOVERING AB</div>
-  <div class="subtitle">Petrabadrum – Offertunderlag för badrumsrenovering</div>
+  <div class="subtitle">Offertunderlag för badrumsrenovering</div>
 </header>
 
 <div class="container">
