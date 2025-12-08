@@ -1,1006 +1,254 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="sv">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.77">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8">
+  <title>Petrabadrum – Offertapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --petra-dark: #003c8f;
+      --petra-main: #1d4ed8;
+      --petra-light: #e2e8f0;
+      --bg-body-top: #0f172a;
+      --bg-body-bottom: #eef2f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, system-ui, -webkit-system-font, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, var(--bg-body-top) 0, var(--petra-main) 160px, var(--bg-body-bottom) 160px);
+      color: #0f172a;
+      font-size: 16px;
+    }
+    header {
+      padding: 18px 16px 14px 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ffffff;
+    }
+    header .logo {
+      width: 78px;
+      height: auto;
+      margin-bottom: 6px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.5);
+      padding: 4px;
+    }
+    header .title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    header .subtitle {
+      font-size: 13px;
+      opacity: 0.95;
+      margin-top: 4px;
+    }
+    .container {
+      padding: 12px;
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 14px 16px 16px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.16);
+      border: 1px solid #d0d7e2;
+    }
+    h2 {
+      font-size: 18px;
+      margin: 0 0 8px 0;
+      color: var(--petra-dark);
+      font-weight: 700;
+    }
+    .section-caption {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    label {
+      font-size: 15px;
+      flex: 1 1 55%;
+      padding-right: 8px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    input[type="text"],
+    input[type="number"],
+    select {
+      flex: 1 1 45%;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      min-height: 44px;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      resize: vertical;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #e0edff;
+      color: #1d4ed8;
+      font-size: 11px;
+      margin-left: 6px;
+    }
+    .price-box {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--petra-dark);
+      margin-bottom: 4px;
+    }
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 999px;
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--petra-main);
+      color: #ffffff;
+    }
+    .btn-secondary {
+      background: var(--petra-light);
+      color: #0f172a;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--petra-main);
+      color: var(--petra-main);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .btn-row .btn {
+      flex: 1 1 calc(50% - 4px);
+    }
+    @media print {
+      body { background: #ffffff; }
+      .btn, .btn-row { display: none !important; }
+      .card { box-shadow: none; border-color: #cbd5e1; }
+    }
   </style>
 </head>
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="sv"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Petrabadrum – Offertapp&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--petra-dark: #003c8f;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--petra-main: #1d4ed8;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--petra-light: #e2e8f0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-body-top: #0f172a;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>--bg-body-bottom: #eef2f6;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>* { box-sizing: border-box; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: -apple-system, system-ui, -webkit-system-font, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(180deg, var(--bg-body-top) 0, var(--petra-main) 160px, var(--bg-body-bottom) 160px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #0f172a;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 18px 16px 14px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header .logo {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 78px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(15, 23, 42, 0.5);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header .title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.06em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>header .subtitle {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0.95;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 900px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto 40px auto;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 14px 16px 16px 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 3px 8px rgba(15, 23, 42, 0.16);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #d0d7e2;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 8px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--petra-dark);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.section-caption {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #64748b;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.row {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex: 1 1 55%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-right: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #1e293b;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input[type="text"],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input[type="number"],</p>
-<p class="p1"><span class="Apple-converted-space">    </span>select {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex: 1 1 45%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #cbd5e1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 44px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input[type="number"] { -moz-appearance: textfield; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input::-webkit-outer-spin-button,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>textarea {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #cbd5e1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>resize: vertical;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>input[type="checkbox"] {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1.1);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-right: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.checkbox-row {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.checkbox-row label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex: 0 1 auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 500;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.pill {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 3px 9px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #e0edff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #1d4ed8;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-left: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.price-box {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--petra-dark);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.price-details {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #6b7280;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.small {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #6b7280;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 16px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-primary {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--petra-main);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-secondary {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: var(--petra-light);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #0f172a;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-outline {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--petra-main);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: var(--petra-main);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-row {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-row .btn {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex: 1 1 calc(50% - 4px);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-icon {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.btn-icon span {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 18px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.entre-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #020617;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #e5e7eb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-color: #111827;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.entre-card h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #bfdbfe;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.entre-card textarea {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #020617;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #e5e7eb;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-color: #1f2937;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.chip-group-label {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 14px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #1e293b;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 8px 0 4px 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.chip-row {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.chip {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 6px 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #cbd5e1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f8fafc;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 13px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.chip input[type="checkbox"] {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-right: 4px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: scale(1.05);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>hr.soft {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 10px 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-top: 1px solid #e2e8f0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 600px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.row { flex-direction: column; }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>label { margin-bottom: 3px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media print {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>body { background: #ffffff; }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>header { box-shadow: none; color:#000; }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.btn, .btn-row, #foto_info { display: none !important; }</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.card { box-shadow: none; border-color: #cbd5e1; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1">&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Lägg filen petrabygg_logo.png i samma repo så visas loggan --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;img src="petrabygg_logo.png" class="logo" alt="Petra Bygg &amp; Renovering AB"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="title"&gt;PETRA BYGG &amp; RENOVERING AB&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="subtitle"&gt;Petrabadrum – Offertunderlag för badrumsrenovering&lt;/div&gt;</p>
-<p class="p1">&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="container"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- KUNDUPPGIFTER --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Kunduppgifter&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-caption"&gt;Fylls i inför eller under kundbesök.&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="kundnamn"&gt;Kundnamn&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="kundnamn" type="text" placeholder="Ex. Anna Andersson"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="adress"&gt;Adress&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="adress" type="text" placeholder="Gata, postnummer, ort"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="telefon"&gt;Telefon&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="telefon" type="text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="epost"&gt;E-post&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="epost" type="text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- BADRUMSDATA --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Badrumsdata&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="nivå"&gt;Standardnivå &lt;span class="pill"&gt;Pris per m²&lt;/span&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="nivå"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="standard"&gt;Standard&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="premium"&gt;Premium&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="exklusiv"&gt;Exklusiv&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="storlek"&gt;Badrumsstorlek (m²)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="storlek" type="number" step="0.1" min="0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="takhöjd"&gt;Takhöjd (m)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="takhöjd" type="number" step="0.05" min="0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- YTSKIKT --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Ytskikt&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="kakel_vägg"&gt;Kakelstorlek vägg&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="kakel_vägg" type="text" placeholder="Ex. 30x60"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="fogfärg"&gt;Fogfärg&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="fogfärg" type="text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="klinker_golv"&gt;Klinker storlek golv&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="klinker_golv" type="text" placeholder="Ex. 10x10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- FUNKTIONER &amp; UTRUSTNING --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Funktioner &amp; utrustning&lt;/h2&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="wc_vägg" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="wc_vägg"&gt;Vägghängd toalett&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="handdusch_wc" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="handdusch_wc"&gt;Handdusch vid toalett&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="badkar" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="badkar"&gt;Badkar&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="enbart_dusch" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="enbart_dusch"&gt;Enbart dusch&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="nischer"&gt;Nischer i väggar (antal)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="nischer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="0"&gt;0&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="1"&gt;1&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="2"&gt;2&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="3"&gt;3&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="4"&gt;4&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="5"&gt;5&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="antal_tvattstall"&gt;Antal tvättställ&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="antal_tvattstall"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="1"&gt;1&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="2"&gt;2&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="3"&gt;3&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="4"&gt;4&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="antal_duschset"&gt;Antal duschset&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="antal_duschset"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="1"&gt;1&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="2"&gt;2&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="3"&gt;3&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="4"&gt;4&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="tvättmaskin" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="tvättmaskin"&gt;Tvättmaskin inkl el &amp;amp; avlopp&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="vattenledningar"&gt;Vattenledningar&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="vattenledningar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="utan"&gt;Utanpåliggande&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="infällda"&gt;Infällda&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="golvvärme"&gt;Golvvärme&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="golvvärme"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="ingen"&gt;Ingen&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="el"&gt;El&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="vatten"&gt;Vatten&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="handdukstork"&gt;Handdukstork&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="handdukstork"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="ingen"&gt;Ingen&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="el"&gt;El&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="vatten"&gt;Vatten&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="spotlights"&gt;Antal spotlights&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="spotlights"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="0"&gt;0&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="1"&gt;1&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="2"&gt;2&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="3"&gt;3&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="4"&gt;4&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="5"&gt;5&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="6"&gt;6&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="7"&gt;7&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="8"&gt;8&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="9"&gt;9&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="10"&gt;10&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="undertak" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="undertak"&gt;Nytt undertak/sänkt tak&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="behålla_dörr" type="checkbox" checked&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="behålla_dörr"&gt;Behålla befintlig dörr &amp;amp; tröskel&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="golvavlopp"&gt;Golvavlopp&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="golvavlopp"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="trad"&gt;Traditionellt&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="unidrain"&gt;Unidrain&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="ny_vagg_m2"&gt;Ny vägg (m²)&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="ny_vagg_m2" type="number" step="0.5" min="0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="chip-group-label"&gt;Badrumsinredning (kund köper, vi installerar)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="chip-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="inred_kommod"&gt; Kommod&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="inred_spegel"&gt; Spegelskåp/spegel&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="inred_hogskap"&gt; Högskåp&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="inred_forkast"&gt; Förvaring toalett&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="inred_handdusch"&gt; Handdusch&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="chip-group-label"&gt;Duschlösning&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="chip-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="dusch_horna"&gt; Duschhörna&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="dusch_fastglas"&gt; Fast glasvägg&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="dusch_vikdorr"&gt; Vikdörrar&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="dusch_skjut"&gt; Skjutdörr&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="chip"&gt;&lt;input type="checkbox" id="dusch_walkin"&gt; Walk-in&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;hr class="soft"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="hamta_kakel" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="hamta_kakel"&gt;Vi hämtar kakel &amp;amp; klinker åt kund&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="checkbox-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="hamta_inredning" type="checkbox"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="hamta_inredning"&gt;Vi hämtar badrumsinredning åt kund&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="chip-group-label"&gt;Övrigt (t.ex. speciella önskemål, trånga utrymmen etc.)&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;textarea id="ovrigt_text" rows="2" placeholder="Skriv ev. särskilda förutsättningar här..."&gt;&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- MÖTESDATA --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Mötesdata&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="motesdatum"&gt;Datum för kundbesök&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;input id="motesdatum" type="text" placeholder="ÅÅÅÅ-MM-DD"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;label for="motestyp"&gt;Mötestyp&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;select id="motestyp"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value=""&gt;Välj...&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="forsta"&gt;Första besök&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;option value="ater"&gt;Återbesök&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- PRIS &amp; OFFERTUNDERLAG --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Preliminärt pris &amp; offertunderlag&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="small"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>Prisnivåer nedan är preliminära (exkl. eventuella tilläggs- och ändringsarbeten). Slutlig offert tas fram av Petra Hus AB.</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="pris_text" class="price-box"&gt;–&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="pris_detaljer" class="price-details"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="foto_info" class="small" style="margin-top:6px;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>Tips: Ta bilder/film i kundens badrum och bifoga när du mailar underlaget till entreprenören.</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="btn-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn btn-secondary btn-icon" onclick="öppnaKamera('image')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;📷&lt;/span&gt; Ta foto</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn btn-secondary btn-icon" onclick="öppnaKamera('video')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;🎥&lt;/span&gt; Filma</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Dolda file-inputs som triggas av knapparna --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input id="foto_input" type="file" accept="image/*" capture="environment" multiple style="display:none;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input id="video_input" type="file" accept="video/*" capture="environment" style="display:none;"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="btn-row" style="margin-top:10px;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn btn-primary" onclick="beräknaPris()"&gt;Beräkna pris&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn btn-secondary" onclick="kopieraSammanfattning()"&gt;Kopiera sammanfattning&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="btn-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn btn-secondary" onclick="skapaPDF()"&gt;Skapa PDF (skriv ut)&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="btn btn-outline" onclick="skickaMail()"&gt;Maila offertunderlag&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;textarea id="sammanfattning" rows="10" style="margin-top:8px;" placeholder="Här visas sammanfattningen till kund/offertsystem..."&gt;&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ENTREPRENÖRSVY --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card entre-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Entreprenörsvy – PETRA HUS AB&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="small"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>Denna vy kan kopieras och skickas till Petra Hus eller användas som underlag vid inmatning i deras offertsystem. Kom ihåg att separat bifoga bilder/video.</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;textarea id="entre_sammanfattning" rows="12" placeholder="Beräkna pris först, så fylls entreprenörsvyn i automatiskt."&gt;&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>// PRISER – från din senaste Excel, SUMMA kolumn</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const priser = {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// BASPAKET (per m²)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>BASE_STD_M2: 10000,<span class="Apple-converted-space">  </span>// Standard</p>
-<p class="p1"><span class="Apple-converted-space">    </span>BASE_PREM_M2: 14500, // Premium</p>
-<p class="p1"><span class="Apple-converted-space">    </span>BASE_EXKL_M2: 19500, // Exklusiv</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// TILLÄGG (per st eller m²)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>WC_VÄGG:<span class="Apple-converted-space">      </span>12000,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>GOLVV_EL_M2: <span class="Apple-converted-space">  </span>1800,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>GOLVV_VAT_M2:<span class="Apple-converted-space">  </span>2100,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>UNIDRAIN:<span class="Apple-converted-space">      </span>8000,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>NISCH: <span class="Apple-converted-space">        </span>4000,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>TVÄTT: <span class="Apple-converted-space">        </span>6000,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>GLAS:<span class="Apple-converted-space">          </span>9000,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>HANDDUK_EL:<span class="Apple-converted-space">    </span>4000,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>HANDDUK_VAT: <span class="Apple-converted-space">  </span>5000,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>SPOT:<span class="Apple-converted-space">          </span>1100,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>UNDERTAK:<span class="Apple-converted-space">      </span>6000,</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// HÄMTNINGSTJÄNSTER</p>
-<p class="p1"><span class="Apple-converted-space">    </span>HAMTA_KAKEL: <span class="Apple-converted-space">    </span>2500,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>HAMTA_INREDNING: 2500,</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// FAST PROVISION / ÖVRIGT</p>
-<p class="p1"><span class="Apple-converted-space">    </span>OVRIGT_FAST: 30000<span class="Apple-converted-space">  </span>// Övrigt (etablering, resor, deponi etc)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function formatCurrency(value) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (isNaN(value)) return "-";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return value.toLocaleString("sv-SE", {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>style: "currency",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>currency: "SEK",</p>
-<p class="p1"><span class="Apple-converted-space">      </span>maximumFractionDigits: 0</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function öppnaKamera(typ) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (typ === "image") {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("foto_input").click();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("video_input").click();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function beräknaPris() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const m2 <span class="Apple-converted-space">        </span>= parseFloat(document.getElementById("storlek").value) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const wcVägg <span class="Apple-converted-space">    </span>= document.getElementById("wc_vägg").checked;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const golvvärme<span class="Apple-converted-space">  </span>= document.getElementById("golvvärme").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const nischer<span class="Apple-converted-space">    </span>= parseInt(document.getElementById("nischer").value) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const tvätt<span class="Apple-converted-space">      </span>= document.getElementById("tvättmaskin").checked;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const golvavlopp = document.getElementById("golvavlopp").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const handduk<span class="Apple-converted-space">    </span>= document.getElementById("handdukstork").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const spots<span class="Apple-converted-space">      </span>= parseInt(document.getElementById("spotlights").value) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const undertak <span class="Apple-converted-space">  </span>= document.getElementById("undertak").checked;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const nivå <span class="Apple-converted-space">      </span>= document.getElementById("nivå").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const hamtaKakel = document.getElementById("hamta_kakel").checked;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const hamtaInred = document.getElementById("hamta_inredning").checked;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Duschlösning – minst ett val =&gt; glas-tillägg</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const duschVal = [</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_horna", <span class="Apple-converted-space">  </span>label: "Duschhörna"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_fastglas",label: "Fast glasvägg"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_vikdorr", label: "Vikdörrar"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_skjut", <span class="Apple-converted-space">  </span>label: "Skjutdörr"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_walkin",<span class="Apple-converted-space">  </span>label: "Walk-in"}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>].filter(x =&gt; document.getElementById(x.id).checked).map(x =&gt; x.label);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let sumEx = 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let rader = [];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Bas per m²</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (m2 &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>let kod;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (nivå === "standard")<span class="Apple-converted-space">  </span>kod = "BASE_STD_M2";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (nivå === "premium") <span class="Apple-converted-space">  </span>kod = "BASE_PREM_M2";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (nivå === "exklusiv")<span class="Apple-converted-space">  </span>kod = "BASE_EXKL_M2";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const ápris = priser[kod];</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const belopp = m2 * ápris;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += belopp;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const nivåText = nivå.charAt(0).toUpperCase() + nivå.slice(1);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Basrenovering " + nivåText + " " + m2.toFixed(1) + " m²: " + formatCurrency(belopp));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Vägghängd WC</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (wcVägg) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.WC_VÄGG;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Installation av vägghängd WC inkl fixtur (kund kan tillhandahålla porslin/tryckknapp): "</p>
-<p class="p1"><span class="Apple-converted-space">        </span>+ formatCurrency(priser.WC_VÄGG)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Golvvärme</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (golvvärme === "el" &amp;&amp; m2 &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const belopp = m2 * priser.GOLVV_EL_M2;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += belopp;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Golvvärme (el) " + m2.toFixed(1) + " m²: " + formatCurrency(belopp));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else if (golvvärme === "vatten" &amp;&amp; m2 &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const belopp = m2 * priser.GOLVV_VAT_M2;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += belopp;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Golvvärme (vatten) " + m2.toFixed(1) + " m²: " + formatCurrency(belopp));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Unidrain</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (golvavlopp === "unidrain") {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.UNIDRAIN;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Unidrain golvavlopp (material + installation): " + formatCurrency(priser.UNIDRAIN));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Nischer</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (nischer &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const belopp = nischer * priser.NISCH;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += belopp;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Platsbyggda nischer " + nischer + " st (exkl. kakel/klinker som köps av kund): "</p>
-<p class="p1"><span class="Apple-converted-space">        </span>+ formatCurrency(belopp)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Tvättmaskin</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (tvätt) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.TVÄTT;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Installation av tvättmaskin (el &amp; avlopp, kund tillhandahåller maskin): "</p>
-<p class="p1"><span class="Apple-converted-space">        </span>+ formatCurrency(priser.TVÄTT)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Duschlösning → glas-tillägg</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (duschVal.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.GLAS;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Montering av dusch-/glaslösning (kund tillhandahåller glas): "</p>
-<p class="p1"><span class="Apple-converted-space">        </span>+ formatCurrency(priser.GLAS)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Handdukstork</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (handduk === "el") {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.HANDDUK_EL;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Installation av handdukstork (el, kund tillhandahåller handdukstork): "</p>
-<p class="p1"><span class="Apple-converted-space">        </span>+ formatCurrency(priser.HANDDUK_EL)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else if (handduk === "vatten") {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.HANDDUK_VAT;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Installation av handdukstork (vatten, kund tillhandahåller handdukstork): "</p>
-<p class="p1"><span class="Apple-converted-space">        </span>+ formatCurrency(priser.HANDDUK_VAT)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Spotlights</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (spots &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const belopp = spots * priser.SPOT;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += belopp;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push(</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Spotlights " + spots + " st (inkl armatur &amp; installation): "</p>
-<p class="p1"><span class="Apple-converted-space">        </span>+ formatCurrency(belopp)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Undertak</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (undertak) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.UNDERTAK;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Nytt undertak/sänkt tak (material + arbete): " + formatCurrency(priser.UNDERTAK));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Hämtningstjänster</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (hamtaKakel) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.HAMTA_KAKEL;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Hämtning/transport av kakel &amp; klinker: " + formatCurrency(priser.HAMTA_KAKEL));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (hamtaInred) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.HAMTA_INREDNING;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Hämtning/transport av badrumsinredning: " + formatCurrency(priser.HAMTA_INREDNING));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Fast provision / övrigt – alltid med om vi räknar på ett projekt</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (m2 &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>sumEx += priser.OVRIGT_FAST;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>rader.push("Övrigt (etablering, resor, deponi etc): " + formatCurrency(priser.OVRIGT_FAST));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const sumInkl = sumEx * 1.25;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (sumEx &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("pris_text").innerText =</p>
-<p class="p1"><span class="Apple-converted-space">        </span>formatCurrency(sumInkl) + " inkl moms (preliminärt)";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("pris_detaljer").innerText =</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"Exkl moms: " + formatCurrency(sumEx) +</p>
-<p class="p1"><span class="Apple-converted-space">        </span>" • Moms 25%: " + formatCurrency(sumInkl - sumEx);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("pris_text").innerText = "–";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("pris_detaljer").innerText = "";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>byggSammanfattning(sumInkl, sumEx, rader);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function byggSammanfattning(sumInkl, sumEx, prisrader) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const kund = document.getElementById("kundnamn").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const adress = document.getElementById("adress").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const tel = document.getElementById("telefon").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const epost = document.getElementById("epost").value;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const nivå = document.getElementById("nivå").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const m2 = document.getElementById("storlek").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const tak = document.getElementById("takhöjd").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const kakel = document.getElementById("kakel_vägg").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const fog = document.getElementById("fogfärg").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const klinker = document.getElementById("klinker_golv").value;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const wcVägg = document.getElementById("wc_vägg").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const handduschWC = document.getElementById("handdusch_wc").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const badkar = document.getElementById("badkar").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const enbartDusch = document.getElementById("enbart_dusch").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const nischer = document.getElementById("nischer").value || "0";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const tvätt = document.getElementById("tvättmaskin").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const vattenledningar = document.getElementById("vattenledningar").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const golvvärme = document.getElementById("golvvärme").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const handduk = document.getElementById("handdukstork").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const spots = document.getElementById("spotlights").value || "0";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const undertak = document.getElementById("undertak").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const behållaDörr = document.getElementById("behålla_dörr").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const golvavlopp = document.getElementById("golvavlopp").value === "unidrain" ? "Unidrain" : "Traditionellt";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const nyVagg = document.getElementById("ny_vagg_m2").value || "0";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const hamtaKakel = document.getElementById("hamta_kakel").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const hamtaInred = document.getElementById("hamta_inredning").checked ? "Ja" : "Nej";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const antalTvatt = document.getElementById("antal_tvattstall").value || "1";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const antalDuschset = document.getElementById("antal_duschset").value || "1";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const ovrigtText = document.getElementById("ovrigt_text").value;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const motesdatum = document.getElementById("motesdatum").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let motestypKod = document.getElementById("motestyp").value;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let motestyp = "-";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (motestypKod === "forsta") motestyp = "Första besök";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>else if (motestypKod === "ater") motestyp = "Återbesök";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Inredningsval</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const inredVal = [</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id:"inred_kommod", label:"Kommod"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id:"inred_spegel", label:"Spegelskåp/spegel"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id:"inred_hogskap", label:"Högskåp"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id:"inred_forkast", label:"Förvaring toalett"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id:"inred_handdusch", label:"Handdusch"}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>].filter(x =&gt; document.getElementById(x.id).checked).map(x =&gt; x.label);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const duschVal = [</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_horna", <span class="Apple-converted-space">  </span>label: "Duschhörna"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_fastglas",label: "Fast glasvägg"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_vikdorr", label: "Vikdörrar"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_skjut", <span class="Apple-converted-space">  </span>label: "Skjutdörr"},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{id: "dusch_walkin",<span class="Apple-converted-space">  </span>label: "Walk-in"}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>].filter(x =&gt; document.getElementById(x.id).checked).map(x =&gt; x.label);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let nivåText = nivå.charAt(0).toUpperCase() + nivå.slice(1);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Kundvy</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let text = "";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Kund: " + (kund || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Adress: " + (adress || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (tel) text += "Telefon: " + tel + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (epost) text += "E-post: " + epost + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Mötesdatum: " + (motesdatum || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Mötestyp: " + motestyp + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Standardnivå: " + nivåText + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Badrum ca " + (m2 || "?") + " m², takhöjd " + (tak || "?") + " m.\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Ytskikt: väggkakel " + (kakel || "?") + ", fogfärg " + (fog || "?") +</p>
-<p class="p1"><span class="Apple-converted-space">            </span>", klinker golv " + (klinker || "?") + ".\n\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "Funktioner och utrustning:\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Vägghängd WC: " + wcVägg + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Handdusch vid toalett: " + handduschWC + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Badkar: " + badkar + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Enbart dusch: " + enbartDusch + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Nischer i väggar: " + nischer + " st\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Antal tvättställ: " + antalTvatt + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Antal duschset: " + antalDuschset + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Tvättmaskin inkl el &amp; avlopp: " + tvätt + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Vattenledningar: " + vattenledningar + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Golvvärme: " + golvvärme + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Handdukstork: " + handduk + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Antal spotlights: " + spots + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Nytt undertak/sänkt tak: " + undertak + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Ny vägg: " + nyVagg + " m²\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Behålla befintlig dörr &amp; tröskel: " + behållaDörr + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Golvavlopp: " + golvavlopp + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Vi hämtar kakel &amp; klinker: " + hamtaKakel + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Vi hämtar badrumsinredning: " + hamtaInred + "\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Badrumsinredning: " + (inredVal.length ? inredVal.join(", ") : "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += "- Duschlösning: " + (duschVal.length ? duschVal.join(", ") : "-") + "\n\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (ovrigtText.trim().length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text += "Övrigt (särskilda förutsättningar):\n" + ovrigtText.trim() + "\n\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (prisrader &amp;&amp; prisrader.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text += "Prisuppdelning (preliminär, exkl moms):\n";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>prisrader.forEach(rad =&gt; text += "- " + rad + "\n");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text += "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!isNaN(sumInkl) &amp;&amp; sumInkl &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text += "Preliminärt totalpris (exkl moms): " + formatCurrency(sumEx) + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text += "Preliminärt totalpris (inkl moms): " + formatCurrency(sumInkl) + ".\n";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text += "Observera att detta är ett ungefärligt pris baserat på standardutförande. Slutlig offert lämnas efter genomgång av alla detaljer.\n\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text += "Preliminärt pris har inte beräknats ännu.\n\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const entreprenörAnsvar =</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"Entreprenörens ansvar:\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Rivning av befintligt badrum\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell flytt av rör/nya rör\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell uppriktning av väggar\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell montering av nytt undergolv\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Inköp av rörmaterial\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Inköp av elmaterial\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuellt inköp av undergolv (spånskivor)\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuellt inköp av gipsskivor till tak\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Inköp av flytspackel\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Inköp av tätskikt\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Inköp av kakellim\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Inköp av kakelfog\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Inköp av mjukfog\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell montering av golvvärme\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuellt inköp av material till golvvärme\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Flytspackling\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell frakt av plattor och inredning\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell montering av nischer\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eldragning\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell montering av spotlights\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Montering av tätskikt\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Montering av golvbrunnar\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Montering av plattor\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell spackling i tak\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuellt inköp av våtrumsspackel\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell målning i tak\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuellt inköp av våtrumsfärg\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Fogning av plattor\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Deponi\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Montering av all badrumsinredning\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuellt inköp av dörrtröskel\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Eventuell montering av dörrtröskel\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Grovstädning\n\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const kundAnsvar =</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"Kundens ansvar:\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Köp av kakel/klinker (vi kan ombesörja frakten)\n" +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"- Köp av all badrumsinredning (vi kan ombesörja frakten)\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text += entreprenörAnsvar + kundAnsvar;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("sammanfattning").value = text;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Entreprenörsvy</p>
-<p class="p1"><span class="Apple-converted-space">    </span>let entre = "";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "PETRA HUS AB – UNDERLAG FÖR OFFERT\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "====================================\n\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Kund: " + (kund || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Adress: " + (adress || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (tel) entre += "Telefon: " + tel + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (epost) entre += "E-post: " + epost + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Mötesdatum: " + (motesdatum || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Mötestyp: " + motestyp + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Standardnivå: " + nivåText + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Yta: " + (m2 || "?") + " m² • Takhöjd: " + (tak || "?") + " m\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Golvavlopp: " + golvavlopp + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Vattenledningar: " + vattenledningar + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Golvvärme: " + golvvärme + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Handdukstork: " + handduk + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Spotlights: " + spots + " st • Nytt undertak/sänkt tak: " + undertak + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Nischer: " + nischer + " st\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Antal tvättställ: " + antalTvatt + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Antal duschset: " + antalDuschset + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "WC vägghängd: " + wcVägg + " • Handdusch WC: " + handduschWC + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Badkar: " + badkar + " • Enbart dusch: " + enbartDusch + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Ny vägg: " + nyVagg + " m²\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Vi hämtar kakel &amp; klinker: " + hamtaKakel + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Vi hämtar badrumsinredning: " + hamtaInred + "\n\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Ytskikt:\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "- Kakel vägg: " + (kakel || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "- Fogfärg: " + (fog || "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "- Klinker golv: " + (klinker || "-") + "\n\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "Inredning:\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "- Badrumsinredning: " + (inredVal.length ? inredVal.join(", ") : "-") + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "- Duschlösning: " + (duschVal.length ? duschVal.join(", ") : "-") + "\n\n";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (ovrigtText.trim().length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>entre += "Övrigt/särskilda förutsättningar:\n" + ovrigtText.trim() + "\n\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (prisrader &amp;&amp; prisrader.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>entre += "Prisuppdelning (preliminär, exkl moms):\n";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>prisrader.forEach(rad =&gt; entre += "- " + rad + "\n");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>entre += "\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!isNaN(sumInkl) &amp;&amp; sumInkl &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>entre += "Preliminärt totalpris exkl moms: " + formatCurrency(sumEx) + "\n";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>entre += "Preliminärt totalpris inkl moms: " + formatCurrency(sumInkl) + "\n\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>entre += "Preliminärt pris ej beräknat.\n\n";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += entreprenörAnsvar + kundAnsvar;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>entre += "\nNotering: Detta är ett underlag. Petra Hus AB justerar vid behov enligt egen kalkyl. Bifoga även bilder/video från besöket vid separat utskick.";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("entre_sammanfattning").value = entre;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function kopieraSammanfattning() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const textarea = document.getElementById("sammanfattning");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!textarea.value) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>beräknaPris();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>textarea.select();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>textarea.setSelectionRange(0, 99999);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.execCommand("copy");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>alert("Sammanfattning kopierad. Klistra in i sms, mail eller offertsystem.");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function skapaPDF() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!document.getElementById("sammanfattning").value) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>beräknaPris();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>window.print();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>function skickaMail() {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!document.getElementById("sammanfattning").value) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>beräknaPris();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const kund = document.getElementById("kundnamn").value || "kund";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const bodyText = document.getElementById("sammanfattning").value +</p>
-<p class="p1"><span class="Apple-converted-space">      </span>"\n\nOBS: Bifoga även bilder/video från besöket när du skickar detta till entreprenören.";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const body = encodeURIComponent(bodyText);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const subject = encodeURIComponent("Offertunderlag badrumsrenovering – " + kund);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>window.location.href = "mailto:?subject=" + subject + "&amp;body=" + body;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<header>
+  <img src="petrabygg_logo.png" class="logo" alt="Petra Bygg & Renovering AB">
+  <div class="title">PETRA BYGG & RENOVERING AB</div>
+  <div class="subtitle">Petrabadrum – Offertunderlag för badrumsrenovering</div>
+</header>
+
+<div class="container">
+
+  <!-- KUNDUPPGIFTER -->
+  <div class="card">
+    <h2>Kunduppgifter</h2>
+    <div class="row">
+      <label for="kundnamn">Kundnamn</label>
+      <input id="kundnamn" type="text">
+    </div>
+    <div class="row">
+      <label for="adress">Adress</label>
+      <input id="adress" type="text">
+    </div>
+    <div class="row">
+      <label for="telefon">Telefon</label>
+      <input id="telefon" type="text">
+    </div>
+    <div class="row">
+      <label for="epost">E-post</label>
+      <input id="epost" type="text">
+    </div>
+  </div>
+
+  <!-- BADRUMSDATA -->
+  <div class="card">
+    <h2>Badrumsdata</h2>
+    <div class="row">
+      <label for="nivå">Standardnivå</label>
+      <select id="nivå">
+        <option value="standard">Standard</option>
+        <option value="premium">Premium</option>
+        <option value="exklusiv">Exklusiv</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="storlek">Badrumsstorlek (m²)</label>
+      <input id="storlek" type="number">
+    </div>
+  </div>
+
+  <!-- PRIS -->
+  <div class="card">
+    <h2>Preliminärt pris</h2>
+    <div id="pris_text" class="price-box">–</div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="beräknaPris()">Beräkna pris</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+function formatCurrency(value) {
+  return value.toLocaleString("sv-SE", {
+    style: "currency",
+    currency: "SEK",
+    maximumFractionDigits: 0
+  });
+}
+
+function beräknaPris() {
+  const m2 = parseFloat(document.getElementById("storlek").value) || 0;
+  const nivå = document.getElementById("nivå").value;
+
+  const nivåPris = {
+    standard: 10000,
+    premium: 14500,
+    exklusiv: 19500
+  };
+
+  const exMoms = m2 * nivåPris[nivå];
+  const inkl = exMoms * 1.25;
+
+  document.getElementById("pris_text").innerText =
+    formatCurrency(inkl) + " inkl moms";
+}
+
+</script>
+
 </body>
 </html>
