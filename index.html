@@ -303,6 +303,36 @@
       .btn, .btn-row, #foto_info { display: none !important; }
       .card { box-shadow: none; border: 1px solid #cbd5e1; }
     }
+        .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-header h2 {
+      margin: 0;
+    }
+
+    .btn-calendar {
+      width: auto;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      background: #facc15;      /* gul */
+      color: #92400e;           /* mörk orange/brun text */
+      box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5);
+      white-space: nowrap;
+    }
+
+    .btn-calendar:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 6px rgba(250, 204, 21, 0.5);
+    }
+
   </style>
 </head>
 <body>
@@ -315,10 +345,19 @@
 
 <div class="container">
 
-  <!-- KUNDUPPGIFTER -->
+    <!-- KUNDUPPGIFTER -->
   <div class="card">
-    <h2>Kunduppgifter</h2>
-    <div class="section-caption">Fylls i inför eller under kundbesök.</div>
+    <div class="card-header">
+      <h2>Kunduppgifter</h2>
+      <button class="btn btn-calendar" onclick="skapaKalenderhandelse()">
+        📅 Lägg till i kalender
+      </button>
+    </div>
+
+    <div class="section-caption">
+      Fylls i vid första telefonkontakten och inför kundbesök.
+    </div>
+
     <div class="row">
       <label for="kundnamn">Kundnamn</label>
       <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson">
@@ -335,7 +374,35 @@
       <label for="epost">E-post</label>
       <input id="epost" type="text">
     </div>
+
+    <div class="chip-group-label">Mötesdata</div>
+
+    <div class="row">
+      <label for="motesdatum">Datum för kundbesök</label>
+      <input id="motesdatum" type="date">
+    </div>
+
+    <div class="row">
+      <label for="motestid">Tid</label>
+      <input id="motestid" type="time">
+    </div>
+
+    <div class="row">
+      <label for="motestyp">Mötestyp</label>
+      <select id="motestyp">
+        <option value="forstamote">Första besök</option>
+        <option value="aterbesok">Återbesök</option>
+        <option value="telefon">Telefonmöte</option>
+        <option value="digitalt">Digitalt möte (Teams/Zoom)</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="motesplats">Plats (adress/online)</label>
+      <input id="motesplats" type="text" placeholder="Ex. Hos kund, adress eller Teams-länk">
+    </div>
   </div>
+
 
   <!-- BADRUMSDATA -->
   <div class="card">
