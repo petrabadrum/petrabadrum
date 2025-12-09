@@ -5,7 +5,7 @@
   <title>Petrabadrum – Offertapp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
+   <style>
     :root {
       --petra-dark: #003c8f;
       --petra-main: #1d4ed8;
@@ -13,71 +13,81 @@
       --bg-body-top: #0f172a;
       --bg-body-bottom: #eef2f6;
     }
+
     * { box-sizing: border-box; }
+
     body {
       font-family: -apple-system, system-ui, -webkit-system-font, sans-serif;
       margin: 0;
       padding: 0;
-      background: #eef2f6;          /* ljus bakgrund för resten av sidan */
+      background: #eef2f6;
       color: #0f172a;
       font-size: 16px;
     }
+
+    /* HELT VIT “FÖRSTASIDA” MED STOR LOGGA */
     header {
-      min-height: 100vh;            /* fyll hela skärmen första vyn */
+      min-height: 100vh;
       width: 100%;
-      background: linear-gradient(180deg, #0b1430, #1d4ed8);
+      background: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;      /* centrera lodrätt */
+      justify-content: center;
       text-align: center;
       padding: 24px 16px 32px 16px;
-      color: #ffffff;
+      color: #0f172a;
+      border-bottom: 1px solid #e5e7eb;
     }
+
     header .logo {
-      width: 240px;                 /* större logga */
+      width: 260px;      /* ändra till 220 om du vill ha lite mindre */
       height: auto;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      filter: none;      /* ingen konstig skuggning */
     }
-    header .title {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-    }
+
     header .subtitle {
-      font-size: 13px;
-      opacity: 0.95;
-      margin-top: 4px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 8px;
+      color: #0f172a;
     }
+
     .container {
       padding: 12px;
       max-width: 900px;
       margin: 0 auto 40px auto;
     }
+
     .card {
       background: #ffffff;
       border-radius: 14px;
       padding: 14px 16px 16px 16px;
       margin-bottom: 14px;
-      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.16);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
       border: 1px solid #d0d7e2;
     }
+
     h2 {
       font-size: 18px;
       margin: 0 0 8px 0;
       color: var(--petra-dark);
       font-weight: 700;
     }
+
     .section-caption {
       font-size: 12px;
       color: #64748b;
       margin-bottom: 8px;
     }
+
     .row {
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 8px;
     }
+
     label {
       font-size: 15px;
       flex: 1 1 55%;
@@ -85,6 +95,7 @@
       font-weight: 600;
       color: #1e293b;
     }
+
     input[type="text"],
     input[type="number"],
     select {
@@ -95,9 +106,11 @@
       border: 1px solid #cbd5e1;
       min-height: 44px;
     }
+
     input[type="number"] { -moz-appearance: textfield; }
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
     textarea {
       width: 100%;
       padding: 10px;
@@ -106,19 +119,23 @@
       border: 1px solid #cbd5e1;
       resize: vertical;
     }
+
     input[type="checkbox"] {
       transform: scale(1.1);
       margin-right: 6px;
     }
+
     .checkbox-row {
       display: flex;
       align-items: center;
       margin-bottom: 6px;
     }
+
     .checkbox-row label {
       flex: 0 1 auto;
       font-weight: 500;
     }
+
     .pill {
       display: inline-block;
       padding: 3px 9px;
@@ -128,21 +145,25 @@
       font-size: 11px;
       margin-left: 6px;
     }
+
     .price-box {
       font-size: 22px;
       font-weight: 700;
       color: var(--petra-dark);
       margin-bottom: 4px;
     }
+
     .price-details {
       font-size: 13px;
       color: #6b7280;
       margin-bottom: 8px;
     }
+
     .small {
       font-size: 12px;
       color: #6b7280;
     }
+
     .btn {
       width: 100%;
       padding: 13px;
@@ -153,62 +174,75 @@
       margin-top: 8px;
       cursor: pointer;
     }
+
     .btn-primary {
       background: var(--petra-main);
       color: #ffffff;
     }
+
     .btn-secondary {
       background: var(--petra-light);
       color: #0f172a;
     }
+
     .btn-outline {
       background: transparent;
       border: 1px solid var(--petra-main);
       color: var(--petra-main);
     }
+
     .btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 6px;
     }
+
     .btn-row .btn {
       flex: 1 1 calc(50% - 4px);
     }
+
     .btn-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
     }
+
     .btn-icon span {
       font-size: 18px;
     }
+
     .entre-card {
       background: #020617;
       color: #e5e7eb;
       border-color: #111827;
     }
+
     .entre-card h2 {
       color: #bfdbfe;
     }
+
     .entre-card textarea {
       background: #020617;
       color: #e5e7eb;
       border-color: #1f2937;
     }
+
     .chip-group-label {
       font-size: 14px;
       font-weight: 600;
       color: #1e293b;
       margin: 8px 0 4px 0;
     }
+
     .chip-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       margin-bottom: 8px;
     }
+
     .chip {
       display: inline-flex;
       align-items: center;
@@ -218,19 +252,23 @@
       background: #f8fafc;
       font-size: 13px;
     }
+
     .chip input[type="checkbox"] {
       margin-right: 4px;
       transform: scale(1.05);
     }
+
     hr.soft {
       margin: 10px 0;
       border: none;
       border-top: 1px solid #e2e8f0;
     }
+
     @media (max-width: 600px) {
       .row { flex-direction: column; }
       label { margin-bottom: 3px; }
     }
+
     @media print {
       body { background: #ffffff; }
       header { box-shadow: none; color:#000; }
@@ -238,6 +276,7 @@
       .card { box-shadow: none; border-color: #cbd5e1; }
     }
   </style>
+
 </head>
 <body>
 <header>
