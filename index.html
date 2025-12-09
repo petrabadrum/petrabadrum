@@ -351,6 +351,62 @@
       background: #e5e7eb;
       border: none;
     }
+     /* ============================================= */
+/*   APP-KÄNSLA: STÖRRE KNAPPAR & SELECT-FÄLT    */
+/* ============================================= */
+
+/* Större spacing i korten */
+.card {
+  padding: 20px 18px 22px;
+  border-radius: 22px;
+}
+
+/* Etiketter större & tydligare */
+label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Input-fält mer iPhone-känsla */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  min-height: 52px;                    /* <-- större */
+  font-size: 17px;                     /* <-- tydligare */
+  padding: 12px 14px;
+  border-radius: 14px;                 /* <-- rundare hörn */
+  background: #f8fafc;
+  border: 1px solid #d1d5db;
+  -webkit-appearance: none;            /* fix för iOS */
+}
+
+/* För dropdowns: lägg ikon åt höger (iOS-style) */
+select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23334155" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.23 7.21a1 1 0 011.4-.14L10 9.17l3.38-2.1a1 1 0 111.2 1.64l-4 2.5a1 1 0 01-1.16 0l-4-2.5a1 1 0 01-.19-1.5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px;                 /* plats för ikon */
+}
+
+/* Fokus-stil: tydlig men clean */
+input:focus,
+select:focus,
+textarea:focus {
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.25);
+  outline: none;
+}
+
+/* Större radavstånd mellan fält */
+.row {
+  margin-bottom: 14px;
+}
+
+/*
   </style>
 
 </head>
