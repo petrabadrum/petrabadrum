@@ -292,15 +292,53 @@
       border-color: #1f2937;
     }
 
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-header h2 {
+      margin: 0;
+    }
+
+    .btn-calendar {
+      width: auto;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      background: #facc15;      /* gul */
+      color: #92400e;           /* mörk text */
+      box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .btn-calendar:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 6px rgba(250, 204, 21, 0.5);
+    }
+
     @media (max-width: 600px) {
       .row { flex-direction: column; }
       label { margin-bottom: 4px; }
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .btn-calendar {
+        align-self: flex-start;
+      }
     }
 
     @media print {
       body { background: #ffffff; }
       header { box-shadow: none; color:#000; border: none; }
-      .btn, .btn-row, #foto_info { display: none !important; }
+      .btn, .btn-row, #foto_info, .btn-calendar { display: none !important; }
       .card { box-shadow: none; border: 1px solid #cbd5e1; }
     }
   </style>
@@ -315,10 +353,19 @@
 
 <div class="container">
 
-  <!-- KUNDUPPGIFTER -->
+  <!-- KUNDUPPGIFTER + MÖTESDATA -->
   <div class="card">
-    <h2>Kunduppgifter</h2>
-    <div class="section-caption">Fylls i inför eller under kundbesök.</div>
+    <div class="card-header">
+      <h2>Kunduppgifter</h2>
+      <button class="btn-calendar" onclick="skapaKalenderhandelse()">
+        📅 Lägg till i kalender
+      </button>
+    </div>
+
+    <div class="section-caption">
+      Fylls i vid första telefonkontakten och inför kundbesök.
+    </div>
+
     <div class="row">
       <label for="kundnamn">Kundnamn</label>
       <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson">
@@ -334,6 +381,33 @@
     <div class="row">
       <label for="epost">E-post</label>
       <input id="epost" type="text">
+    </div>
+
+    <div class="chip-group-label">Mötesdata</div>
+
+    <div class="row">
+      <label for="motesdatum">Datum för kundbesök</label>
+      <input id="motesdatum" type="date">
+    </div>
+
+    <div class="row">
+      <label for="motestid">Tid</label>
+      <input id="motestid" type="time">
+    </div>
+
+    <div class="row">
+      <label for="motestyp">Mötestyp</label>
+      <select id="motestyp">
+        <option value="forstamote">Första besök</option>
+        <option value="aterbesok">Återbesök</option>
+        <option value="telefon">Telefonmöte</option>
+        <option value="digitalt">Digitalt möte (Teams/Zoom)</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="motesplats">Plats (adress/online)</label>
+      <input id="motesplats" type="text" placeholder="Ex. Hos kund, adress eller Teams-länk">
     </div>
   </div>
 
@@ -462,8 +536,8 @@
     </div>
 
     <div class="row">
-      <label for="golvvärme">Golvvärme</label>
-      <select id="golvvärme">
+      <label for="golvvarme">Golvvärme</label>
+      <select id="golvvarme">
         <option value="ingen">Ingen</option>
         <option value="el">El</option>
         <option value="vatten">Vatten</option>
@@ -642,7 +716,7 @@
     const m2           = parseFloat(document.getElementById("storlek").value) || 0;
     const niva         = document.getElementById("niva").value;
     const wcVagg       = document.getElementById("wc_vagg").checked;
-    const golvvärme    = document.getElementById("golvvärme").value;
+    const golvvarme    = document.getElementById("golvvarme").value;
     const nischer      = parseInt(document.getElementById("nischer").value) || 0;
     const tvatt        = document.getElementById("tvattmaskin").checked;
     const golvavlopp   = document.getElementById("golvavlopp").value;
@@ -681,11 +755,11 @@
       rader.push("Vägghängd WC inkl fixtur: " + formatCurrency(priser.WC_VAGG));
     }
 
-    if (golvvärme === "el" && m2 > 0) {
+    if (golvvarme === "el" && m2 > 0) {
       const belopp = m2 * priser.GOLVV_EL_M2;
       sumEx += belopp;
       rader.push("Golvvärme (el) " + m2.toFixed(1) + " m²: " + formatCurrency(belopp));
-    } else if (golvvärme === "vatten" && m2 > 0) {
+    } else if (golvvarme === "vatten" && m2 > 0) {
       const belopp = m2 * priser.GOLVV_VAT_M2;
       sumEx += belopp;
       rader.push("Golvvärme (vatten) " + m2.toFixed(1) + " m²: " + formatCurrency(belopp));
@@ -782,7 +856,7 @@
     const nischer = document.getElementById("nischer").value || "0";
     const tvatt = document.getElementById("tvattmaskin").checked ? "Ja" : "Nej";
     const vattenledningar = document.getElementById("vattenledningar").value;
-    const golvv = document.getElementById("golvvärme").value;
+    const golvv = document.getElementById("golvvarme").value;
     const handduk = document.getElementById("handdukstork").value;
     const spots = document.getElementById("spotlights").value || "0";
     const undertak = document.getElementById("undertak").checked ? "Ja" : "Nej";
@@ -1013,6 +1087,105 @@
     const body = encodeURIComponent(bodyText);
     const subject = encodeURIComponent("Offertunderlag badrumsrenovering – " + kund);
     window.location.href = "mailto:?subject=" + subject + "&body=" + body;
+  }
+
+  function skapaKalenderhandelse() {
+    const kund = (document.getElementById("kundnamn").value || "").trim();
+    const adress = (document.getElementById("adress").value || "").trim();
+    const tel = (document.getElementById("telefon").value || "").trim();
+    const epost = (document.getElementById("epost").value || "").trim();
+
+    const datum = document.getElementById("motesdatum").value;
+    const tid = document.getElementById("motestid").value;
+    const typ = document.getElementById("motestyp").value;
+    const platsInput = (document.getElementById("motesplats").value || "").trim();
+
+    if (!datum || !tid) {
+      alert("Ange datum och tid för mötet först.");
+      return;
+    }
+
+    // Start- och sluttid (60 min möte)
+    const startDate = new Date(datum + "T" + tid + ":00");
+    const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
+
+    function fmt(d) {
+      const pad = n => String(n).padStart(2, "0");
+      return (
+        d.getFullYear().toString() +
+        pad(d.getMonth() + 1) +
+        pad(d.getDate()) +
+        "T" +
+        pad(d.getHours()) +
+        pad(d.getMinutes()) +
+        "00"
+      );
+    }
+
+    function escapeICS(str) {
+      return str
+        .replace(/\\/g, "\\\\")
+        .replace(/,/g, "\\,")
+        .replace(/;/g, "\\;")
+        .replace(/\r?\n/g, "\\n");
+    }
+
+    const dtStart = fmt(startDate);
+    const dtEnd = fmt(endDate);
+
+    let typText = "Kundmöte badrumsrenovering";
+    if (typ === "aterbesok") typText = "Återbesök badrumsrenovering";
+    if (typ === "telefon") typText = "Telefonmöte badrum";
+    if (typ === "digitalt") typText = "Digitalt möte badrum";
+
+    const kundnamn = kund || "kund";
+    const summary = typText + " – " + kundnamn;
+
+    // Plats = mötesplats +/eller adress automatiskt
+    let location = "";
+    if (platsInput && adress) {
+      location = adress + " – " + platsInput;
+    } else if (platsInput) {
+      location = platsInput;
+    } else if (adress) {
+      location = adress;
+    }
+
+    // Beskrivning med kundinfo
+    let desc = "";
+    if (kund) desc += "Kund: " + kund + "\n";
+    if (adress) desc += "Adress: " + adress + "\n";
+    if (tel) desc += "Telefon: " + tel + "\n";
+    if (epost) desc += "E-post: " + epost + "\n";
+
+    const lines = [];
+    lines.push("BEGIN:VCALENDAR");
+    lines.push("VERSION:2.0");
+    lines.push("PRODID:-//Petrabadrum//SE");
+    lines.push("BEGIN:VEVENT");
+    lines.push("SUMMARY:" + escapeICS(summary));
+    lines.push("DTSTART:" + dtStart);
+    lines.push("DTEND:" + dtEnd);
+    if (location) {
+      lines.push("LOCATION:" + escapeICS(location));
+    }
+    if (desc) {
+      lines.push("DESCRIPTION:" + escapeICS(desc));
+    }
+    lines.push("END:VEVENT");
+    lines.push("END:VCALENDAR");
+
+    const ics = lines.join("\r\n");
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "petrabadrum-mote.ics";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 </script>
 
