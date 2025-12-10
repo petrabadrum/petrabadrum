@@ -44,7 +44,6 @@
       width: 220px;
       height: auto;
       margin-bottom: 12px;
-      filter: none;
     }
 
     header .subtitle {
@@ -90,29 +89,30 @@
     .row {
       display: flex;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
+      gap: 10px;
     }
 
     label {
-      font-size: 15px;
-      flex: 1 1 55%;
-      padding-right: 8px;
+      font-size: 13px;
+      flex: 1 1 100%;
       font-weight: 600;
-      color: #334155;
+      color: #6b7280;
     }
 
     input[type="text"],
     input[type="number"],
+    input[type="date"],
+    input[type="time"],
     select,
     textarea {
-      flex: 1 1 45%;
-      min-height: 52px;
-      font-size: 17px;
-      padding: 12px 14px;
+      width: 100%;
+      min-height: 44px;
+      font-size: 16px;
+      padding: 10px 12px;
       border-radius: 14px;
       border: 1px solid #d1d5db;
       background: #f8fafc;
-      -webkit-appearance: none;
     }
 
     input[type="number"] { -moz-appearance: textfield; }
@@ -120,13 +120,11 @@
     input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
     textarea {
-      width: 100%;
       min-height: 72px;
       resize: vertical;
     }
 
-    input[type="text"]:focus,
-    input[type="number"]:focus,
+    input:focus,
     select:focus,
     textarea:focus {
       outline: none;
@@ -135,29 +133,70 @@
       background: #ffffff;
     }
 
-    select {
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23334155" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5.23 7.21a1 1 0 011.4-.14L10 9.17l3.38-2.1a1 1 0 111.2 1.64l-4 2.5a1 1 0 01-1.16 0l-4-2.5a1 1 0 01-.19-1.5z"/></svg>');
+    /* Två fält i bredd */
+    .field-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .field {
+      flex: 1 1 calc(50% - 5px);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+    }
+
+    /* Appiga select-knappar */
+    .picker-select {
+      width: 100%;
+      min-height: 48px;
+      font-size: 16px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;        /* vit default */
+      -webkit-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23334155" height="14" viewBox="0 0 20 20" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M5.23 7.21a1 1 0 011.4-.14L10 9.17l3.38-2.1a1 1 0 111.2 1.64l-4 2.5a1 1 0 01-1.16 0l-4-2.5a1 1 0 01-.19-1.5z"/></svg>');
       background-repeat: no-repeat;
       background-position: right 14px center;
-      background-size: 16px;
-      padding-right: 40px;
+      background-size: 14px;
+      padding-right: 36px;
+    }
+
+    .picker-select.selected {
+      background: #e7f5e4;        /* lugn grön */
+      border-color: #16a34a;
     }
 
     input[type="checkbox"] {
-      transform: scale(1.2);
-      margin-right: 8px;
+      transform: scale(1.1);
+      margin-right: 6px;
     }
 
     .checkbox-row {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .checkbox-row label {
       flex: 0 1 auto;
-      font-size: 15px;
       font-weight: 500;
+      font-size: 14px;
       color: #111827;
     }
 
@@ -292,16 +331,14 @@
       border-color: #1f2937;
     }
 
-    .card-header {
+    /* Mötesdata-rubrik + kalenderknapp */
+    .meeting-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      margin-top: 12px;
       margin-bottom: 6px;
-    }
-
-    .card-header h2 {
-      margin: 0;
     }
 
     .btn-calendar {
@@ -311,8 +348,8 @@
       border: none;
       font-size: 13px;
       font-weight: 700;
-      background: #facc15;      /* gul */
-      color: #92400e;           /* mörk text */
+      background: #facc15;
+      color: #92400e;
       box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5);
       white-space: nowrap;
       cursor: pointer;
@@ -322,114 +359,25 @@
       transform: translateY(1px);
       box-shadow: 0 2px 6px rgba(250, 204, 21, 0.5);
     }
-    /* Grid med två fält per rad */
-    .field-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
+
+    @media (max-width: 600px) {
+      .field-row {
+        flex-direction: row;
+      }
+      .field {
+        flex: 1 1 calc(50% - 5px);
+      }
+      .meeting-header {
+        flex-direction: row;
+        align-items: center;
+      }
     }
 
-    .field {
-      flex: 1 1 calc(50% - 5px);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .field-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: #6b7280;
-    }
-
-    .picker-select {
-      width: 100%;
-      min-height: 48px;
-      font-size: 16px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      background: #e5e7eb;
-      -webkit-appearance: none;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23334155" height="14" viewBox="0 0 20 20" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M5.23 7.21a1 1 0 011.4-.14L10 9.17l3.38-2.1a1 1 0 111.2 1.64l-4 2.5a1 1 0 01-1.16 0l-4-2.5a1 1 0 01-.19-1.5z"/></svg>');
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      background-size: 14px;
-      padding-right: 36px;
-    }
-
-    .picker-select.selected {
-      background: #dcfce7;      /* ljusgrön */
-      border-color: #22c55e;
-    }
-
-      <!-- KUNDUPPGIFTER + MÖTESDATA -->
-  <div class="card">
-    <div class="customer-header-top">
-      <div class="customer-header-left">
-        <h2>Kunduppgifter</h2>
-        <div class="section-caption">
-          Fylls i vid första telefonkontakten och inför kundbesök.
-        </div>
-      </div>
-      <div class="customer-header-right">
-        <div class="meeting-label">Mötesdata</div>
-        <button class="btn-calendar" onclick="skapaKalenderhandelse()">
-          📅 Lägg till i kalender
-        </button>
-      </div>
-    </div>
-
-    <!-- Kunddata -->
-    <div class="row">
-      <label for="kundnamn">Kundnamn</label>
-      <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson">
-    </div>
-    <div class="row">
-      <label for="adress">Adress</label>
-      <input id="adress" type="text" placeholder="Gata, postnummer, ort">
-    </div>
-    <div class="row">
-      <label for="telefon">Telefon</label>
-      <input id="telefon" type="text">
-    </div>
-    <div class="row">
-      <label for="epost">E-post</label>
-      <input id="epost" type="text">
-    </div>
-
-    <!-- Mötesdata -->
-    <div class="chip-group-label">Mötesdata</div>
-
-    <div class="field-row">
-      <div class="field">
-        <div class="field-label">Datum</div>
-        <input id="motesdatum" type="date">
-      </div>
-      <div class="field">
-        <div class="field-label">Tid</div>
-        <input id="motestid" type="time">
-      </div>
-    </div>
-
-    <div class="field-row">
-      <div class="field">
-        <div class="field-label">Typ</div>
-        <select id="motestyp" class="picker-select">
-          <option value="forstamote">Första besök</option>
-          <option value="aterbesok">Återbesök</option>
-          <option value="telefon">Telefonmöte</option>
-          <option value="digitalt">Digitalt möte</option>
-        </select>
-      </div>
-      <div class="field">
-        <div class="field-label">Plats</div>
-        <input id="motesplats" type="text" placeholder="Hos kund / Teams-länk">
-      </div>
-    </div>
-  </div>
-
+    @media print {
+      body { background: #ffffff; }
+      header { box-shadow: none; color:#000; border: none; }
+      .btn, .btn-row, #foto_info, .btn-calendar { display: none !important; }
+      .card { box-shadow: none; border: 1px solid #cbd5e1; }
     }
   </style>
 </head>
@@ -445,63 +393,70 @@
 
   <!-- KUNDUPPGIFTER + MÖTESDATA -->
   <div class="card">
-    <div class="card-header">
-      <h2>Kunduppgifter</h2>
+    <h2>Kunduppgifter</h2>
+    <div class="section-caption">
+      Fylls i vid första telefonkontakten och inför kundbesök.
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Kundnamn</div>
+        <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson">
+      </div>
+      <div class="field">
+        <div class="field-label">Adress</div>
+        <input id="adress" type="text" placeholder="Gata, postnummer, ort">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Telefon</div>
+        <input id="telefon" type="text">
+      </div>
+      <div class="field">
+        <div class="field-label">E-post</div>
+        <input id="epost" type="text">
+      </div>
+    </div>
+
+    <div class="meeting-header">
+      <div class="chip-group-label" style="margin:0;">Mötesdata</div>
       <button class="btn-calendar" onclick="skapaKalenderhandelse()">
         📅 Lägg till i kalender
       </button>
     </div>
 
-    <div class="section-caption">
-      Fylls i vid första telefonkontakten och inför kundbesök.
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Datum för kundbesök</div>
+        <input id="motesdatum" type="date">
+      </div>
+      <div class="field">
+        <div class="field-label">Tid</div>
+        <input id="motestid" type="time">
+      </div>
     </div>
 
-    <div class="row">
-      <label for="kundnamn">Kundnamn</label>
-      <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson">
-    </div>
-    <div class="row">
-      <label for="adress">Adress</label>
-      <input id="adress" type="text" placeholder="Gata, postnummer, ort">
-    </div>
-    <div class="row">
-      <label for="telefon">Telefon</label>
-      <input id="telefon" type="text">
-    </div>
-    <div class="row">
-      <label for="epost">E-post</label>
-      <input id="epost" type="text">
-    </div>
-
-    <div class="chip-group-label">Mötesdata</div>
-
-    <div class="row">
-      <label for="motesdatum">Datum för kundbesök</label>
-      <input id="motesdatum" type="date">
-    </div>
-
-    <div class="row">
-      <label for="motestid">Tid</label>
-      <input id="motestid" type="time">
-    </div>
-
-    <div class="row">
-      <label for="motestyp">Mötestyp</label>
-      <select id="motestyp">
-        <option value="forstamote">Första besök</option>
-        <option value="aterbesok">Återbesök</option>
-        <option value="telefon">Telefonmöte</option>
-        <option value="digitalt">Digitalt möte (Teams/Zoom)</option>
-      </select>
-    </div>
-
-    <div class="row">
-      <label for="motesplats">Plats (adress/online)</label>
-      <input id="motesplats" type="text" placeholder="Ex. Hos kund, adress eller Teams-länk">
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Mötestyp</div>
+        <select id="motestyp" class="picker-select">
+          <option value="" selected>Ej valt</option>
+          <option value="forstamote">Första besök</option>
+          <option value="aterbesok">Återbesök</option>
+          <option value="telefon">Telefonmöte</option>
+          <option value="digitalt">Digitalt möte</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Plats (adress/online)</div>
+        <input id="motesplats" type="text" placeholder="Hos kund / Teams-länk">
+      </div>
     </div>
   </div>
 
-    <!-- BADRUMSDATA -->
+  <!-- BADRUMSDATA -->
   <div class="card">
     <h2>Badrumsdata</h2>
 
@@ -509,6 +464,7 @@
       <div class="field">
         <div class="field-label">Nivå</div>
         <select id="niva" class="picker-select">
+          <option value="" selected>Ej valt</option>
           <option value="standard">Standard</option>
           <option value="premium">Premium</option>
           <option value="exklusiv">Exklusiv</option>
@@ -518,9 +474,10 @@
       <div class="field">
         <div class="field-label">Storlek (m²)</div>
         <select id="storlek" class="picker-select">
+          <option value="" selected>Ej valt</option>
           <option value="4">4 m²</option>
           <option value="5">5 m²</option>
-          <option value="6" selected>6 m²</option>
+          <option value="6">6 m²</option>
           <option value="7">7 m²</option>
           <option value="8">8 m²</option>
           <option value="9">9 m²</option>
@@ -534,11 +491,12 @@
       <div class="field">
         <div class="field-label">Takhöjd (m)</div>
         <select id="takhöjd" class="picker-select">
+          <option value="" selected>Ej valt</option>
           <option value="2.0">2,0 m</option>
           <option value="2.1">2,1 m</option>
           <option value="2.2">2,2 m</option>
           <option value="2.3">2,3 m</option>
-          <option value="2.4" selected>2,4 m</option>
+          <option value="2.4">2,4 m</option>
           <option value="2.5">2,5 m</option>
           <option value="2.6">2,6 m</option>
           <option value="2.7">2,7 m</option>
@@ -548,11 +506,10 @@
         </select>
       </div>
 
-      <!-- Tom plats för ev. framtida parameter, eller lämna som är -->
       <div class="field">
         <div class="field-label">Reserv</div>
         <select class="picker-select" disabled>
-          <option>–</option>
+          <option>Ej vald</option>
         </select>
       </div>
     </div>
@@ -561,17 +518,29 @@
   <!-- YTSKIKT -->
   <div class="card">
     <h2>Ytskikt</h2>
-    <div class="row">
-      <label for="kakel_vagg">Kakelstorlek vägg</label>
-      <input id="kakel_vagg" type="text" placeholder="Ex. 30x60">
+
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Kakelstorlek vägg</div>
+        <input id="kakel_vagg" type="text" placeholder="Ex. 30x60">
+      </div>
+      <div class="field">
+        <div class="field-label">Fogfärg</div>
+        <input id="fogfarg" type="text">
+      </div>
     </div>
-    <div class="row">
-      <label for="fogfarg">Fogfärg</label>
-      <input id="fogfarg" type="text">
-    </div>
-    <div class="row">
-      <label for="klinker_golv">Klinker storlek golv</label>
-      <input id="klinker_golv" type="text" placeholder="Ex. 10x10">
+
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Klinker storlek golv</div>
+        <input id="klinker_golv" type="text" placeholder="Ex. 10x10">
+      </div>
+      <div class="field">
+        <div class="field-label">Reserv</div>
+        <select class="picker-select" disabled>
+          <option>Ej vald</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -579,140 +548,176 @@
   <div class="card">
     <h2>Funktioner & utrustning</h2>
 
-    <!-- Sanitet & dusch -->
     <div class="chip-group-label">Sanitet & dusch</div>
 
-    <div class="checkbox-row">
-      <input id="wc_vagg" type="checkbox">
-      <label for="wc_vagg">Vägghängd toalett</label>
-    </div>
-    <div class="checkbox-row">
-      <input id="handdusch_wc" type="checkbox">
-      <label for="handdusch_wc">Handdusch vid toalett</label>
-    </div>
-    <div class="checkbox-row">
-      <input id="badkar" type="checkbox">
-      <label for="badkar">Badkar</label>
-    </div>
-    <div class="checkbox-row">
-      <input id="enbart_dusch" type="checkbox">
-      <label for="enbart_dusch">Enbart dusch</label>
-    </div>
-    <div class="checkbox-row">
-      <input id="tvattmaskin" type="checkbox">
-      <label for="tvattmaskin">Tvättmaskin inkl el &amp; avlopp</label>
-    </div>
-    <div class="checkbox-row">
-      <input id="undertak" type="checkbox">
-      <label for="undertak">Nytt undertak/sänkt tak</label>
-    </div>
-    <div class="checkbox-row">
-      <input id="ny_dorr" type="checkbox">
-      <label for="ny_dorr">Ny dörr</label>
-    </div>
-    <div class="checkbox-row">
-      <input id="ny_troskel" type="checkbox">
-      <label for="ny_troskel">Ny tröskel</label>
+    <div class="field-row">
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="wc_vagg" type="checkbox">
+          <label for="wc_vagg">Vägghängd toalett</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="handdusch_wc" type="checkbox">
+          <label for="handdusch_wc">Handdusch vid toalett</label>
+        </div>
+      </div>
     </div>
 
-    <!-- Inredning & nischer -->
+    <div class="field-row">
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="badkar" type="checkbox">
+          <label for="badkar">Badkar</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="enbart_dusch" type="checkbox">
+          <label for="enbart_dusch">Enbart dusch</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="tvattmaskin" type="checkbox">
+          <label for="tvattmaskin">Tvättmaskin inkl el &amp; avlopp</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="undertak" type="checkbox">
+          <label for="undertak">Nytt undertak/sänkt tak</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="ny_dorr" type="checkbox">
+          <label for="ny_dorr">Ny dörr</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="checkbox-row">
+          <input id="ny_troskel" type="checkbox">
+          <label for="ny_troskel">Ny tröskel</label>
+        </div>
+      </div>
+    </div>
+
     <div class="chip-group-label">Inredning & nischer</div>
 
-    <div class="row">
-      <label for="nischer">Nischer i väggar (antal)</label>
-      <select id="nischer">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Nischer i väggar (antal)</div>
+        <select id="nischer" class="picker-select">
+          <option value="0" selected>Ej valt</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Antal tvättställ</div>
+        <select id="antal_tvattstall" class="picker-select">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
     </div>
 
-    <div class="row">
-      <label for="antal_tvattstall">Antal tvättställ</label>
-      <select id="antal_tvattstall">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Antal duschset</div>
+        <select id="antal_duschset" class="picker-select">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Ny vägg (m²)</div>
+        <input id="ny_vagg_m2" type="number" step="0.5" min="0">
+      </div>
     </div>
 
-    <div class="row">
-      <label for="antal_duschset">Antal duschset</label>
-      <select id="antal_duschset">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-    </div>
-
-    <!-- Rör, värme & el -->
     <div class="chip-group-label">Rör, värme & el</div>
 
-    <div class="row">
-      <label for="vattenledningar">Vattenledningar</label>
-      <select id="vattenledningar">
-        <option value="utan">Utanpåliggande</option>
-        <option value="infallda">Infällda</option>
-      </select>
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Vattenledningar</div>
+        <select id="vattenledningar" class="picker-select">
+          <option value="" selected>Ej valt</option>
+          <option value="utan">Utanpåliggande</option>
+          <option value="infallda">Infällda</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Golvvärme</div>
+        <select id="golvvarme" class="picker-select">
+          <option value="ingen" selected>Ingen</option>
+          <option value="el">El</option>
+          <option value="vatten">Vatten</option>
+        </select>
+      </div>
     </div>
 
-    <div class="row">
-      <label for="golvvarme">Golvvärme</label>
-      <select id="golvvarme">
-        <option value="ingen">Ingen</option>
-        <option value="el">El</option>
-        <option value="vatten">Vatten</option>
-      </select>
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Handdukstork</div>
+        <select id="handdukstork" class="picker-select">
+          <option value="ingen" selected>Ingen</option>
+          <option value="el">El</option>
+          <option value="vatten">Vatten</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Antal spotlights</div>
+        <select id="spotlights" class="picker-select">
+          <option value="0" selected>0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
     </div>
 
-    <div class="row">
-      <label for="handdukstork">Handdukstork</label>
-      <select id="handdukstork">
-        <option value="ingen">Ingen</option>
-        <option value="el">El</option>
-        <option value="vatten">Vatten</option>
-      </select>
-    </div>
-
-    <div class="row">
-      <label for="spotlights">Antal spotlights</label>
-      <select id="spotlights">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-      </select>
-    </div>
-
-    <!-- Byggdelar -->
     <div class="chip-group-label">Byggdelar</div>
 
-    <div class="row">
-      <label for="golvavlopp">Golvavlopp</label>
-      <select id="golvavlopp">
-        <option value="trad">Traditionellt</option>
-        <option value="unidrain">Unidrain</option>
-      </select>
+    <div class="field-row">
+      <div class="field">
+        <div class="field-label">Golvavlopp</div>
+        <select id="golvavlopp" class="picker-select">
+          <option value="trad" selected>Traditionellt</option>
+          <option value="unidrain">Unidrain</option>
+        </select>
+      </div>
+      <div class="field">
+        <div class="field-label">Reserv</div>
+        <select class="picker-select" disabled>
+          <option>Ej vald</option>
+        </select>
+      </div>
     </div>
 
-    <div class="row">
-      <label for="ny_vagg_m2">Ny vägg (m²)</label>
-      <input id="ny_vagg_m2" type="number" step="0.5" min="0">
-    </div>
-
-    <!-- Badrumsinredning -->
     <div class="chip-group-label">Badrumsinredning (kund köper, vi installerar)</div>
     <div class="chip-row">
       <label class="chip"><input type="checkbox" id="inred_kommod"> Kommod</label>
@@ -722,7 +727,6 @@
       <label class="chip"><input type="checkbox" id="inred_handdusch"> Handdusch</label>
     </div>
 
-    <!-- Duschlösning -->
     <div class="chip-group-label">Duschlösning</div>
     <div class="chip-row">
       <label class="chip"><input type="checkbox" id="dusch_horna"> Duschhörna</label>
@@ -734,7 +738,6 @@
 
     <hr class="soft">
 
-    <!-- Hämtningstjänster -->
     <div class="checkbox-row">
       <input id="hamta_kakel" type="checkbox">
       <label for="hamta_kakel">Vi hämtar kakel &amp; klinker åt kund</label>
@@ -772,7 +775,6 @@
       </button>
     </div>
 
-    <!-- Dolda file-inputs som triggas av knapparna -->
     <input id="foto_input" type="file" accept="image/*" capture="environment" multiple style="display:none;">
     <input id="video_input" type="file" accept="video/*" capture="environment" style="display:none;">
 
@@ -818,7 +820,7 @@
     UNDERTAK:      6000,
     HAMTA_KAKEL:   2500,
     HAMTA_INRED:   2500,
-    OVRIGT_FAST:  30000 // övrigt/provision etc
+    OVRIGT_FAST:  30000
   };
 
   function formatCurrency(value) {
@@ -839,18 +841,18 @@
   }
 
   function beraknaPris() {
-    const m2           = parseFloat(document.getElementById("storlek").value) || 0;
-    const niva         = document.getElementById("niva").value;
-    const wcVagg       = document.getElementById("wc_vagg").checked;
-    const golvvarme    = document.getElementById("golvvarme").value;
-    const nischer      = parseInt(document.getElementById("nischer").value) || 0;
-    const tvatt        = document.getElementById("tvattmaskin").checked;
-    const golvavlopp   = document.getElementById("golvavlopp").value;
-    const handduk      = document.getElementById("handdukstork").value;
-    const spots        = parseInt(document.getElementById("spotlights").value) || 0;
-    const undertak     = document.getElementById("undertak").checked;
-    const hamtaKakel   = document.getElementById("hamta_kakel").checked;
-    const hamtaInred   = document.getElementById("hamta_inredning").checked;
+    const m2         = parseFloat(document.getElementById("storlek").value) || 0;
+    const niva       = document.getElementById("niva").value;
+    const wcVagg     = document.getElementById("wc_vagg").checked;
+    const golvvarme  = document.getElementById("golvvarme").value;
+    const nischer    = parseInt(document.getElementById("nischer").value) || 0;
+    const tvatt      = document.getElementById("tvattmaskin").checked;
+    const golvavlopp = document.getElementById("golvavlopp").value;
+    const handduk    = document.getElementById("handdukstork").value;
+    const spots      = parseInt(document.getElementById("spotlights").value) || 0;
+    const undertak   = document.getElementById("undertak").checked;
+    const hamtaKakel = document.getElementById("hamta_kakel").checked;
+    const hamtaInred = document.getElementById("hamta_inredning").checked;
 
     const duschVal = [
       { id: "dusch_horna",   label: "Duschhörna" },
@@ -863,7 +865,8 @@
     let sumEx = 0;
     let rader = [];
 
-    if (m2 > 0) {
+    // Bas per m² (bara om nivå vald)
+    if (m2 > 0 && (niva === "standard" || niva === "premium" || niva === "exklusiv")) {
       let kod;
       if (niva === "standard") kod = "BASE_STD_M2";
       if (niva === "premium") kod = "BASE_PREM_M2";
@@ -981,7 +984,7 @@
     const enbartDusch = document.getElementById("enbart_dusch").checked ? "Ja" : "Nej";
     const nischer = document.getElementById("nischer").value || "0";
     const tvatt = document.getElementById("tvattmaskin").checked ? "Ja" : "Nej";
-    const vattenledningar = document.getElementById("vattenledningar").value;
+    const vattenledningar = document.getElementById("vattenledningar").value || "-";
     const golvv = document.getElementById("golvvarme").value;
     const handduk = document.getElementById("handdukstork").value;
     const spots = document.getElementById("spotlights").value || "0";
@@ -1012,7 +1015,7 @@
       { id: "dusch_walkin",  label: "Walk-in" }
     ].filter(x => document.getElementById(x.id).checked).map(x => x.label);
 
-    let nivaText = niva.charAt(0).toUpperCase() + niva.slice(1);
+    let nivaText = niva ? (niva.charAt(0).toUpperCase() + niva.slice(1)) : "-";
 
     let text = "";
     text += "Kund: " + (kund || "-") + "\n";
@@ -1231,7 +1234,6 @@
       return;
     }
 
-    // Start- och sluttid (60 min möte)
     const startDate = new Date(datum + "T" + tid + ":00");
     const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
 
@@ -1267,7 +1269,6 @@
     const kundnamn = kund || "kund";
     const summary = typText + " – " + kundnamn;
 
-    // Plats = mötesplats +/eller adress automatiskt
     let location = "";
     if (platsInput && adress) {
       location = adress + " – " + platsInput;
@@ -1277,7 +1278,6 @@
       location = adress;
     }
 
-    // Beskrivning med kundinfo
     let desc = "";
     if (kund) desc += "Kund: " + kund + "\n";
     if (adress) desc += "Adress: " + adress + "\n";
@@ -1313,11 +1313,11 @@
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
-    // Markera select-knappar som "valda" (ljusgröna) när de har värde
+
+  // Gör select-knappar gröna när val gjorts
   document.addEventListener("DOMContentLoaded", function () {
     const selects = document.querySelectorAll(".picker-select");
     selects.forEach(sel => {
-      // initialt – om vi har ett förval
       if (sel.value && sel.value !== "") {
         sel.classList.add("selected");
       }
@@ -1330,7 +1330,6 @@
       });
     });
   });
-
 </script>
 
 </body>
