@@ -172,7 +172,7 @@
       border: none;
       background: #fbbf24;
       color: #78350f;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 13px;
       padding: 8px 14px;
       display: inline-flex;
@@ -184,23 +184,30 @@
     }
     .calendar-btn span.icon { font-size: 18px; }
 
+    .reset-btn {
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #111827;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 8px 14px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
     .checkbox-row {
       display: flex;
       align-items: center;
       margin-bottom: 6px;
       gap: 8px;
     }
-    .checkbox-row input[type="checkbox"] {
-      transform: scale(1.1);
-    }
-    .checkbox-row label {
-      font-size: 14px;
-      color: #111827;
-    }
+    .checkbox-row input[type="checkbox"] { transform: scale(1.1); }
+    .checkbox-row label { font-size: 14px; color: #111827; }
 
     .chip-group-label {
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       color: #1e293b;
       margin: 10px 0 4px;
     }
@@ -209,7 +216,7 @@
 
     .price-box {
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--petra-dark);
       margin-bottom: 4px;
     }
@@ -231,7 +238,7 @@
       border: none;
       padding: 13px;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
     }
     .btn-primary { background: var(--petra-main); color: #ffffff; }
@@ -242,13 +249,6 @@
 
     @media (max-width: 640px) {
       .grid-2 { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media print {
-      #splash { display: none; }
-      body { background: #ffffff; }
-      .btn-row, .calendar-btn, #foto_info { display: none !important; }
-      .card { box-shadow: none; border-color: #cbd5e1; }
     }
   </style>
 </head>
@@ -268,10 +268,14 @@
   <div class="card">
     <div class="card-header">
       <h2>Kunduppgifter</h2>
-      <button type="button" class="calendar-btn" onclick="läggTillIKalender()">
-        <span class="icon">📅</span> Lägg till i kalender
-      </button>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button type="button" class="reset-btn" onclick="nollställ()">Nollställ</button>
+        <button type="button" class="calendar-btn" onclick="läggTillIKalender()">
+          <span class="icon">📅</span> Lägg till i kalender
+        </button>
+      </div>
     </div>
+
     <div class="section-caption">
       Fylls i vid första telefonkontakten och inför kundbesök.
     </div>
@@ -538,9 +542,7 @@
   <!-- PRIS -->
   <div class="card">
     <h2>Preliminärt pris & offertunderlag</h2>
-    <p class="small">
-      Prisnivåer är preliminära (exkl. ÄTA). Slutlig offert tas fram av entreprenören.
-    </p>
+    <p class="small">Prisnivåer är preliminära (exkl. ÄTA). Slutlig offert tas fram av entreprenören.</p>
 
     <div class="checkbox-row" style="margin-bottom:8px;">
       <input id="rot" type="checkbox" />
@@ -574,8 +576,7 @@
       <button class="btn btn-secondary" onclick="sparaPDF()">Spara</button>
     </div>
 
-    <textarea id="sammanfattning" style="margin-top:8px;" rows="10"
-              placeholder="Här visas sammanfattningen..."></textarea>
+    <textarea id="sammanfattning" style="margin-top:8px;" rows="10" placeholder="Här visas sammanfattningen..."></textarea>
   </div>
 
 </div>
@@ -584,10 +585,7 @@
   // =======================
   // PRISER (+10% EXKL MOMS)
   // =======================
-  // Justera nya posterna om du vill:
-  // - SPACKLING_MALNING
-  // - NY_DORR
-  // - NY_TROSKEL
+  // Du kan ändra dessa när du vill.
   const priser = {
     BASE_STD_M2:   11000,
     BASE_PREM_M2:  15950,
@@ -610,11 +608,13 @@
 
     OVRIGT_FAST:    33000,
 
-    // NYA POSTER (med 10% inräknat)
+    // NYA POSTER (separata)
     SPACKLING_MALNING: 4950,
     NY_DORR:            3850,
     NY_TROSKEL:         1650
   };
+
+  const STORAGE_KEY = "petrabadrum_form_v6";
 
   function formatCurrency(value) {
     if (isNaN(value)) return "-";
@@ -796,8 +796,7 @@
   function skickaMail() {
     if (!document.getElementById("sammanfattning").value) beräknaPris();
     const kund = document.getElementById("kundnamn").value || "";
-    const bodyText = document.getElementById("sammanfattning").value +
-      "\n\nOBS: Bifoga även bilder/video separat.";
+    const bodyText = document.getElementById("sammanfattning").value + "\n\nOBS: Bifoga även bilder/video separat.";
     const body = encodeURIComponent(bodyText);
     const subject = encodeURIComponent("Offertunderlag badrumsrenovering – " + kund);
     window.location.href = "mailto:?subject=" + subject + "&body=" + body;
@@ -862,11 +861,9 @@
     const kund = (document.getElementById("kundnamn").value || filenameBase || "kund")
       .replace(/[^a-z0-9_-]+/gi, "_");
 
-    // jsPDF (via CDN)
     const jspdf = window.jspdf;
     if (!jspdf || !jspdf.jsPDF) {
-      // Fallback (om CDN blockas): print
-      window.print();
+      alert("PDF-biblioteket kunde inte laddas. Kontrollera nätverk och testa igen.");
       return null;
     }
 
@@ -900,7 +897,6 @@
     const res = await buildPdfBlob("kund");
     if (!res) return;
 
-    // Öppna PDF i ny flik (fungerar ofta) + kan delas manuellt
     const url = URL.createObjectURL(res.pdfBlob);
     window.open(url, "_blank");
     setTimeout(() => URL.revokeObjectURL(url), 60000);
@@ -910,9 +906,9 @@
     const res = await buildPdfBlob("kund");
     if (!res) return;
 
-    // iOS: Share Sheet -> "Spara i Filer" -> iCloud delad mapp
     const file = new File([res.pdfBlob], res.filename, { type: "application/pdf" });
 
+    // iOS Share Sheet -> Spara i Filer -> iCloud delad mapp
     if (navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
       try {
         await navigator.share({ files: [file], title: res.filename });
@@ -936,8 +932,6 @@
   // =======================
   // Autosave (så data ej försvinner)
   // =======================
-  const STORAGE_KEY = "petrabadrum_form_v5";
-
   function saveState() {
     const data = {};
     document.querySelectorAll("#app input, #app select, #app textarea").forEach(el => {
@@ -959,10 +953,12 @@
         else el.value = data[id];
       });
     } catch(e) {}
+
     const d = document.getElementById("mote_datum");
     if (d && d.value) d.type = "date";
     const t = document.getElementById("mote_tid");
     if (t && t.value) t.type = "time";
+
     updateFilledPills();
   }
 
@@ -970,6 +966,50 @@
     document.querySelectorAll(".pill-select").forEach(sel => {
       sel.classList.toggle("filled", sel.value && sel.value !== "ej_valt");
     });
+  }
+
+  // =======================
+  // Nollställ ALLT
+  // =======================
+  function nollställ() {
+    const ok = confirm("Nollställ allt? Detta rensar alla fält och tar bort sparade uppgifter.");
+    if (!ok) return;
+
+    document.querySelectorAll("#app input, #app select, #app textarea").forEach(el => {
+      if (el.type === "file") return;
+
+      if (el.type === "checkbox") {
+        el.checked = false;
+        return;
+      }
+
+      if (el.tagName === "SELECT") {
+        const hasEjValt = Array.from(el.options).some(o => o.value === "ej_valt");
+        el.value = hasEjValt ? "ej_valt" : (el.options[0]?.value ?? "");
+        return;
+      }
+
+      el.value = "";
+    });
+
+    // Återställ date/time till placeholderläge
+    const d = document.getElementById("mote_datum");
+    if (d) { d.type = "text"; d.value = ""; }
+    const t = document.getElementById("mote_tid");
+    if (t) { t.type = "text"; t.value = ""; }
+
+    // Nollställ pris & sammanfattning
+    const prisText = document.getElementById("pris_text");
+    const prisDet = document.getElementById("pris_detaljer");
+    const sum = document.getElementById("sammanfattning");
+    if (prisText) prisText.innerText = "–";
+    if (prisDet) prisDet.innerText = "";
+    if (sum) sum.value = "";
+
+    // Rensa autospar
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+
+    updateFilledPills();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
