@@ -7,1010 +7,850 @@
 
   <style>
     :root{
-      --bg:#eef2f7;
+      --bg:#f2f5fb;
       --card:#ffffff;
-      --stroke:#cfd7e3;
-      --text:#0b1a33;
-      --muted:#6c7a92;
-      --primary:#1e5bd7;
-      --pill:#f3f5f8;
-      --pillText:#111827;
-      --okBg:#e9f6ec;
-      --okBorder:#2f7a3b;
-      --shadow: 0 10px 30px rgba(10,20,40,.08);
-      --radius: 22px;
+      --line:#d9e1ef;
+      --text:#0e1a2b;
+      --muted:#6b7a90;
+      --blue:#1f57d6;
+      --btn:#eef2f7;
+      --btnText:#1f2a3a;
+      --okBg:#e6f4ea;
+      --okBorder:#3b7a57;
+      --shadow: 0 12px 30px rgba(17,38,78,.10);
+      --radius:22px;
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:-apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #f7f9fc, var(--bg));
+      font-family:-apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
       color:var(--text);
     }
-
-    .wrap{ max-width:980px; margin:0 auto; padding:18px 14px 70px; }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:18px 14px 60px;
+    }
 
     .card{
       background:var(--card);
-      border:1px solid rgba(207,215,227,.9);
+      border:1px solid rgba(217,225,239,.9);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:16px;
+      padding:18px;
       margin:14px 0;
     }
 
-    h2{ margin:0 0 6px; font-size:22px; letter-spacing:.2px; color:#163a7a; }
-    .sub{ margin:0 0 12px; color:var(--muted); font-size:14px; line-height:1.35; }
-
-    /* Sticky top actions */
-    .stickyTop{
-      position:sticky;
-      top:0;
-      z-index:20;
-      padding:10px 0 8px;
-      background: linear-gradient(180deg, rgba(247,249,252,.98), rgba(247,249,252,.86));
-      backdrop-filter: blur(6px);
-    }
-    .toprow{
+    .headRow{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
+      gap:12px;
+      margin-bottom:8px;
+    }
+    h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:.2px;
+      color:#133a7a;
+    }
+    .sub{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    .topBtns{
+      display:flex;
       gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:wrap;
     }
-    .btn{
-      border:1px solid var(--stroke);
+    .smallBtn{
+      border:1px solid var(--line);
       background:#fff;
-      padding:10px 14px;
+      color:#20314b;
       border-radius:999px;
-      font-weight:900;
-      color:#0b1a33;
+      padding:9px 14px;
+      font-weight:700;
+      font-size:14px;
       cursor:pointer;
-      font-size:14px;
-      user-select:none;
-      white-space:nowrap;
+      box-shadow:0 8px 18px rgba(17,38,78,.06);
     }
-    .btn:active{ transform: translateY(1px); }
+    .smallBtn:active{transform:translateY(1px)}
 
-    .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px 14px; }
-    .field label{
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px 14px;
+    }
+    @media (max-width:760px){
+      .grid2{grid-template-columns:1fr 1fr}
+      .wrap{padding:14px 12px 60px}
+    }
+    @media (max-width:420px){
+      .grid2{grid-template-columns:1fr}
+    }
+
+    label{
       display:block;
-      font-weight:900;
-      font-size:14px;
-      margin:6px 0 6px;
-      color:#142a55;
+      font-weight:800;
+      font-size:13px;
+      color:#21314b;
+      margin:2px 0 6px;
     }
 
-    input[type="text"], input[type="tel"], input[type="email"], input[type="number"], input[type="date"], input[type="time"], textarea, select{
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea{
       width:100%;
-      border:1px solid var(--stroke);
-      background:#f8fafc;
+      border:1px solid var(--line);
+      background:#f8fbff;
       border-radius:16px;
-      padding:12px 12px;
+      padding:14px 14px;
       font-size:16px;
       outline:none;
     }
-    textarea{ min-height: 92px; resize: vertical; }
+    textarea{min-height:92px; resize:vertical}
 
-    /* Date/Time as pill */
-    .pillwrap{ position:relative; }
-    .pill{
+    /* “Appiga” halvbreda valfält */
+    .selectBtnWrap{
+      position:relative;
+    }
+    .selectBtn{
       width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      border:1px solid var(--stroke);
-      background:var(--pill);
+      appearance:none;
+      -webkit-appearance:none;
+      border:1px solid var(--line);
+      background:var(--btn);
+      color:var(--btnText);
       border-radius:18px;
-      padding:12px 12px;
-      font-size:16px;
+      padding:16px 44px 16px 16px;
+      font-size:18px;
+      font-weight:800;
       cursor:pointer;
-      user-select:none;
-      min-height:48px;
+      line-height:1;
     }
-    .pill .value{ font-weight:900; color:var(--pillText); }
-    .pill .value.muted{ color:#9aa6ba; }
-    .pill .chev{ opacity:.6; font-size:18px; line-height:1; }
-    .pill.selected{
+    .selectBtn[data-chosen="1"]{
       background:var(--okBg);
-      border-color: rgba(47,122,59,.45);
-      box-shadow: 0 8px 18px rgba(47,122,59,.10);
+      border-color:rgba(59,122,87,.55);
+      color:#204a33;
+    }
+    .chev{
+      position:absolute;
+      right:14px;
+      top:50%;
+      transform:translateY(-50%);
+      font-size:16px;
+      color:#3f4f66;
+      pointer-events:none;
     }
 
-    /* Time with calendar icon */
-    .timeWithIcon{ position:relative; }
-    .timeWithIcon input{ padding-right:46px; }
-    .calIconBtn{
+    /* Tid-fält med kalender-ikon i fältet */
+    .timeIconBtn{
       position:absolute;
-      top:50%;
       right:10px;
-      transform: translateY(-50%);
+      top:50%;
+      transform:translateY(-50%);
       width:34px;
       height:34px;
-      border-radius:12px;
-      border:1px solid var(--stroke);
+      border-radius:10px;
+      border:1px solid var(--line);
       background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
       cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow:0 8px 18px rgba(17,38,78,.06);
+    }
+    .timeIconBtn:active{transform:translateY(-50%) translateY(1px)}
+    .timeIconBtn svg{width:18px;height:18px}
+
+    .rowTitle{
+      margin:10px 0 10px;
       font-size:18px;
+      font-weight:900;
+      color:#183a78;
     }
 
-    /* Checkboxes */
-    .checks{ display:grid; grid-template-columns:1fr; gap:10px; margin-top:8px; }
-    .check{
+    .checks{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .checkItem{
       display:flex;
       align-items:center;
       gap:10px;
-      padding:12px;
-      border:1px solid var(--stroke);
-      border-radius:16px;
-      background:#fbfcfe;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fbfdff;
     }
-    .check input{ width:22px; height:22px; }
-    .check span{ font-weight:800; }
+    .checkItem input{width:22px;height:22px}
+    .checkItem span{font-weight:800}
 
-    /* Actions */
-    .actions{
+    .btnGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:1fr 1fr;
       gap:12px;
-      margin-top: 10px;
+      margin-top:14px;
     }
-    .actionBtn{
+    .bigBtn{
+      border:none;
       border-radius:22px;
-      padding:16px 12px;
-      font-weight:1000;
-      font-size:16px;
-      border:1px solid var(--stroke);
-      background:#eef2f7;
+      padding:16px 14px;
+      font-weight:900;
+      font-size:18px;
       cursor:pointer;
+      background:var(--btn);
+      color:var(--btnText);
+      box-shadow:0 14px 26px rgba(17,38,78,.12);
     }
-    .actionBtn.primary{
-      background:var(--primary);
-      color:#fff;
-      border-color: rgba(30,91,215,.3);
+    .bigBtn.primary{background:var(--blue); color:#fff}
+    .bigBtn.outline{
+      background:#fff;
+      border:2px solid rgba(31,87,214,.45);
+      color:#1f57d6;
+    }
+    .bigBtn:active{transform:translateY(1px)}
+
+    .priceBox{
+      border:2px dashed rgba(107,122,144,.35);
+      border-radius:18px;
+      padding:14px;
+      margin-top:12px;
+    }
+    .priceLine{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      padding:6px 0;
+      color:#25324a;
+      font-weight:800;
+    }
+    .priceLine small{font-weight:700; color:var(--muted)}
+    .priceLine strong{font-size:20px}
+    .priceLine.emph{
+      border-top:1px solid rgba(217,225,239,.85);
+      margin-top:6px;
+      padding-top:10px;
+      font-size:16px;
     }
 
-    /* Modal Övrigt */
-    .modalBack{
+    .mutedHint{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.35;
+    }
+
+    /* Modal */
+    .modalBg{
       position:fixed; inset:0;
-      background: rgba(5,12,25,.45);
+      background:rgba(12,22,40,.45);
       display:none;
       align-items:center;
       justify-content:center;
       padding:18px;
-      z-index:50;
+      z-index:9999;
     }
     .modal{
-      width:min(720px, 100%);
+      width:min(560px, 100%);
       background:#fff;
       border-radius:22px;
-      border:1px solid var(--stroke);
-      box-shadow: 0 22px 60px rgba(0,0,0,.25);
-      padding:14px;
+      border:1px solid rgba(217,225,239,.9);
+      box-shadow:0 26px 70px rgba(0,0,0,.25);
+      padding:16px;
     }
-    .modal h3{ margin:6px 6px 10px; }
-    .otherRows{ display:grid; gap:10px; }
+    .modalHead{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:6px;
+    }
+    .modalHead h3{margin:0; font-size:18px; color:#133a7a}
+    .xBtn{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:12px;
+      width:38px;height:38px;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .otherList{
+      margin-top:10px;
+      border-top:1px solid rgba(217,225,239,.8);
+      padding-top:10px;
+      display:grid;
+      gap:10px;
+    }
     .otherRow{
       display:grid;
-      grid-template-columns: 1fr 140px 44px;
+      grid-template-columns: 1fr 130px 44px;
       gap:10px;
       align-items:center;
     }
-    .iconBtn{
-      width:44px; height:44px;
-      border-radius:14px;
-      border:1px solid var(--stroke);
+    @media (max-width:520px){
+      .otherRow{grid-template-columns: 1fr 110px 44px}
+    }
+    .trashBtn{
+      border:1px solid var(--line);
       background:#fff;
+      border-radius:14px;
+      height:46px;
       cursor:pointer;
-      font-size:18px;
-      font-weight:1000;
-    }
-    .modalFoot{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:12px;
+      font-weight:900;
     }
 
-    .muted{ color: var(--muted); }
-
+    /* Print (A4) */
     @media print{
-      body{ background:#fff; }
-      .wrap{ max-width:100%; padding:0; }
-      .noPrint{ display:none !important; }
-      .card{ box-shadow:none; border:0; margin:0; padding:0; }
+      body{background:#fff}
+      .wrap{max-width:none; padding:0}
+      .noPrint{display:none !important}
+      .printSheet{
+        display:block !important;
+        padding:0;
+      }
+    }
+    .printSheet{display:none}
+    .a4{
+      width:210mm;
+      min-height:297mm;
+      padding:16mm;
+      margin:0 auto;
+      font-family:-apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      color:#0b1220;
+    }
+    .a4 .logoRow{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      margin-bottom:12px;
+      border-bottom:2px solid #e6edf8;
+      padding-bottom:10px;
+    }
+    .a4 img{height:42px; object-fit:contain}
+    .a4 h1{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.2px;
+      color:#113a7a;
+      text-align:right;
+    }
+    .a4 .meta{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px 18px;
+      font-size:12.5px;
+      color:#1c2b44;
+      margin:10px 0 14px;
+    }
+    .a4 .meta div b{display:inline-block; min-width:120px; color:#0e1a2b}
+    .a4 .section{
+      border:1px solid #e6edf8;
+      border-radius:14px;
+      padding:10px 12px;
+      margin:10px 0;
+    }
+    .a4 .section h3{
+      margin:0 0 8px;
+      font-size:13px;
+      color:#113a7a;
+      letter-spacing:.2px;
+      text-transform:uppercase;
+    }
+    .a4 .bullets{
+      margin:0;
+      padding-left:18px;
+      font-size:12.5px;
+      color:#1c2b44;
+      line-height:1.4;
+    }
+    .a4 .priceTable{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:8px;
+      font-size:12.5px;
+    }
+    .a4 .priceTable td{
+      padding:7px 0;
+      border-bottom:1px solid #eef3fb;
+    }
+    .a4 .priceTable td:last-child{text-align:right; font-weight:900}
+    .a4 .tot{
+      font-size:14px;
+      font-weight:900;
+      padding-top:10px;
+      border-top:2px solid #e6edf8;
+    }
+    .a4 .note{
+      margin-top:10px;
+      font-size:11.5px;
+      color:#52637a;
+      line-height:1.4;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap" id="appRoot">
+  <div class="wrap">
 
-    <!-- Sticky top (så Nollställ alltid syns) -->
-    <div class="stickyTop noPrint">
-      <div class="toprow">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <button class="btn" id="resetBtn" type="button">Nollställ</button>
-        </div>
-        <div style="font-weight:900; color:#163a7a;">Petrabadrum</div>
-      </div>
-    </div>
-
+    <!-- KUNDUPPGIFTER + MÖTESDATA -->
     <div class="card">
-      <div class="toprow" style="margin-bottom:8px;">
-        <h2 style="margin:0;">Kunduppgifter</h2>
-      </div>
-      <p class="sub">Fylls i vid första telefonkontakten och inför kundbesök.</p>
-
-      <div class="grid2">
-        <div class="field">
-          <label>Kundnamn</label>
-          <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson" />
+      <div class="headRow">
+        <div>
+          <h2>Kunduppgifter</h2>
+          <p class="sub">Fylls i vid första telefonkontakten och inför kundbesök.</p>
         </div>
-        <div class="field">
-          <label>Adress</label>
-          <input id="adress" type="text" placeholder="Gata, postnummer, ort" />
-        </div>
-
-        <div class="field">
-          <label>Telefon</label>
-          <input id="telefon" type="tel" placeholder="" />
-        </div>
-        <div class="field">
-          <label>E-post</label>
-          <input id="epost" type="email" placeholder="" />
+        <div class="topBtns noPrint">
+          <button class="smallBtn" id="btnReset" type="button">Nollställ</button>
         </div>
       </div>
 
-      <div style="height:10px"></div>
-
-      <h2 style="margin-top:6px;">Mötesdata</h2>
       <div class="grid2">
-        <!-- Datum pill -->
-        <div class="field pillwrap">
+        <div>
+          <label for="kundnamn">Kundnamn</label>
+          <input id="kundnamn" type="text" placeholder="Ex. Anna Andersson" autocomplete="name" />
+        </div>
+        <div>
+          <label for="adress">Adress</label>
+          <input id="adress" type="text" placeholder="Gata, postnummer, ort" autocomplete="street-address" />
+        </div>
+        <div>
+          <label for="telefon">Telefon</label>
+          <input id="telefon" type="tel" placeholder="" autocomplete="tel" />
+        </div>
+        <div>
+          <label for="epost">E-post</label>
+          <input id="epost" type="email" placeholder="" autocomplete="email" />
+        </div>
+      </div>
+
+      <div class="rowTitle">Mötesdata</div>
+
+      <div class="grid2">
+        <div>
           <label>Datum</label>
-          <div class="pill" id="datePill" role="button" tabindex="0">
-            <div class="value muted" id="datePillText">Datum</div>
-            <div class="chev">▾</div>
+          <div class="selectBtnWrap">
+            <select id="dateSelect" class="selectBtn" aria-label="Datum">
+              <option value="" selected>Datum</option>
+            </select>
+            <span class="chev">▾</span>
           </div>
-          <input id="datum" type="date" style="position:absolute; inset:0; opacity:0; pointer-events:auto;" />
         </div>
 
-        <!-- Tid pill + kalenderikon i fältet -->
-        <div class="field pillwrap timeWithIcon">
+        <div>
           <label>Tid</label>
-          <div class="pill" id="timePill" role="button" tabindex="0">
-            <div class="value muted" id="timePillText">Tid</div>
-            <div class="chev">▾</div>
+          <div class="selectBtnWrap">
+            <select id="timeSelect" class="selectBtn" aria-label="Tid">
+              <option value="" selected>Tid</option>
+            </select>
+            <span class="chev">▾</span>
+
+            <!-- Kalender-ikon i tidfältet -->
+            <button class="timeIconBtn noPrint" id="btnCalendar" type="button" title="Lägg till i kalender">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#20314b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="3"></rect>
+                <line x1="16" y1="2.5" x2="16" y2="6"></line>
+                <line x1="8" y1="2.5" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </button>
           </div>
-          <input id="tid" type="time" style="position:absolute; inset:0; opacity:0; pointer-events:auto;" />
-          <button class="calIconBtn" id="calendarIconBtn" type="button" title="Lägg till i kalender">📅</button>
         </div>
 
-        <div class="field">
+        <div>
           <label>Mötestyp</label>
-          <select id="motestyp">
-            <option value="">Ej valt</option>
-            <option>Första besök</option>
-            <option>Återbesök</option>
-            <option>Digitalt möte</option>
-            <option>Telefonsamtal</option>
-          </select>
+          <div class="selectBtnWrap">
+            <select id="motestyp" class="selectBtn">
+              <option value="" selected>Ej valt</option>
+              <option>Första besök</option>
+              <option>Återbesök</option>
+              <option>Telefonmöte</option>
+              <option>Teams/Online</option>
+            </select>
+            <span class="chev">▾</span>
+          </div>
         </div>
 
-        <div class="field">
+        <div>
           <label>Plats</label>
           <input id="plats" type="text" placeholder="Hos kund, adress eller Teams-länk" />
         </div>
-      </div>
 
-      <div style="height:10px"></div>
-
-      <div class="grid2">
-        <div class="check">
-          <input id="rot" type="checkbox" />
+        <div class="checkItem" style="grid-column:1 / span 1;">
+          <input id="rotCheck" type="checkbox" />
           <span>Kund vill utnyttja ROT</span>
         </div>
-        <div class="field">
-          <label>Belopp (ROT)</label>
-          <input id="rotBelopp" type="number" inputmode="numeric" placeholder="0" min="0" step="100" />
+        <div>
+          <label for="rotBelopp">Belopp (ROT)</label>
+          <input id="rotBelopp" type="number" inputmode="numeric" min="0" step="100" value="0" />
         </div>
       </div>
+
+      <p class="mutedHint noPrint">
+        Tips: allt sparas automatiskt i telefonen (så du kan öppna kamera och gå tillbaka utan att tappa data).
+      </p>
     </div>
 
+    <!-- BADRUMSDATA -->
     <div class="card">
-      <h2>Funktioner & utrustning</h2>
-      <p class="sub">Valen används för pris + sammanfattning.</p>
-
-      <!-- Flyttat upp: sänkt tak + behålla dörr/tröskel ligger nu uppe här bland kryssrutorna -->
-      <div class="checks">
-        <label class="check"><input id="vh_wc" type="checkbox"><span>Vägghängd WC</span></label>
-        <label class="check"><input id="gs_wc" type="checkbox"><span>Golvstående WC</span></label>
-        <label class="check"><input id="handdusch_wc" type="checkbox"><span>Handdusch vid toalett</span></label>
-        <label class="check"><input id="badkar" type="checkbox"><span>Badkar</span></label>
-        <label class="check"><input id="enbart_dusch" type="checkbox"><span>Enbart dusch</span></label>
-
-        <label class="check"><input id="tvattmaskin" type="checkbox"><span>Tvättmaskin inkl el & avlopp</span></label>
-
-        <label class="check"><input id="sankt_innertak" type="checkbox"><span>Nytt undertak / sänkt tak</span></label>
-        <label class="check"><input id="behalla_dorr_troskel" type="checkbox"><span>Behålla befintlig dörr & tröskel</span></label>
-
-        <label class="check"><input id="spackel_malning" type="checkbox"><span>Spackling & målning</span></label>
-        <label class="check"><input id="ny_dorr" type="checkbox"><span>Ny dörr</span></label>
-        <label class="check"><input id="ny_troskel" type="checkbox"><span>Ny tröskel</span></label>
-
-        <!-- Hämtning (5 000 kr/st) -->
-        <label class="check"><input id="hamta_kakel" type="checkbox"><span>Vi hämtar kakel & klinker åt kund</span></label>
-        <label class="check"><input id="hamta_inredning" type="checkbox"><span>Vi hämtar badrumsinredning åt kund</span></label>
+      <div class="headRow">
+        <div>
+          <h2>Badrumsdata</h2>
+          <p class="sub">Valen används för pris + sammanfattning.</p>
+        </div>
       </div>
-
-      <div style="height:14px"></div>
 
       <div class="grid2">
-        <div class="field">
-          <label>Flytt av avlopp</label>
-          <select id="flytt_avlopp">
-            <option value="0">Nej</option>
-            <option value="10000">Träbjälklag (+10 000)</option>
-            <option value="20000">Betongbjälklag (+20 000)</option>
-          </select>
+        <div>
+          <label>Nivå</label>
+          <div class="selectBtnWrap">
+            <select id="niva" class="selectBtn">
+              <option value="" selected>Ej valt</option>
+              <option value="Standard">Standard</option>
+              <option value="Premium">Premium</option>
+              <option value="Exclusive">Exclusive</option>
+            </select>
+            <span class="chev">▾</span>
+          </div>
         </div>
 
-        <div class="field">
-          <label>Övrigt</label>
-          <button class="btn noPrint" id="otherBtn" type="button" style="width:100%; border-radius:16px; padding:12px; font-weight:1000;">
-            Lägg till poster
-          </button>
+        <div>
+          <label>Storlek (m²)</label>
+          <div class="selectBtnWrap">
+            <select id="yta" class="selectBtn">
+              <option value="" selected>Ej valt</option>
+            </select>
+            <span class="chev">▾</span>
+          </div>
+        </div>
+
+        <div>
+          <label>Takhöjd (m)</label>
+          <div class="selectBtnWrap">
+            <select id="takh" class="selectBtn">
+              <option value="" selected>Ej valt</option>
+            </select>
+            <span class="chev">▾</span>
+          </div>
+        </div>
+
+        <div>
+          <label>Reserv</label>
+          <div class="selectBtnWrap">
+            <select id="reserv" class="selectBtn">
+              <option value="" selected>Ej valt</option>
+              <option value="0">0</option>
+              <option value="5000">5 000</option>
+              <option value="10000">10 000</option>
+              <option value="15000">15 000</option>
+            </select>
+            <span class="chev">▾</span>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- FUNKTIONER & UTRUSTNING -->
     <div class="card">
-      <h2>Anteckningar</h2>
-      <p class="sub">Frivilligt. Ingår i A4-sammanfattningen (PDF).</p>
-      <textarea id="notes" placeholder="Särskilda förutsättningar, trånga utrymmen, parkering, bilder/video bifogas separat etc."></textarea>
+      <div class="headRow">
+        <div>
+          <h2>Funktioner & utrustning</h2>
+          <p class="sub">Bocka i för info till entreprenören och/eller prispåslag.</p>
+        </div>
+      </div>
 
-      <div class="actions noPrint">
-        <button class="actionBtn primary" id="calcBtn" type="button">Beräkna pris</button>
-        <button class="actionBtn" id="copyBtn" type="button">Kopiera text</button>
-        <button class="actionBtn" id="saveBtn" type="button">Spara</button>
-        <button class="actionBtn" id="pdfBtn" type="button">Spara som PDF</button>
+      <div class="checks">
+        <div class="checkItem"><input id="wcVagg" type="checkbox"><span>Vägghängd WC</span></div>
+        <div class="checkItem"><input id="wcGolv" type="checkbox"><span>Golvstående WC</span></div>
+        <div class="checkItem"><input id="handdusch" type="checkbox"><span>Handdusch vid toalett</span></div>
+        <div class="checkItem"><input id="badkar" type="checkbox"><span>Badkar</span></div>
+        <div class="checkItem"><input id="enbartDusch" type="checkbox"><span>Enbart dusch</span></div>
+
+        <!-- Flyttade upp enligt din bild (3 knappar) -->
+        <div class="checkItem"><input id="tvattmaskin" type="checkbox"><span>Tvättmaskin inkl el & avlopp</span></div>
+        <div class="checkItem"><input id="sanktInnertak" type="checkbox"><span>Sänkt innertak</span></div>
+        <div class="checkItem"><input id="behallaDorTroskel" type="checkbox"><span>Behålla befintlig dörr och tröskel</span></div>
+
+        <div class="checkItem"><input id="spackelMal" type="checkbox"><span>Spackling & målning</span></div>
+        <div class="checkItem"><input id="nyDor" type="checkbox"><span>Ny dörr</span></div>
+        <div class="checkItem"><input id="nyTroskel" type="checkbox"><span>Ny tröskel</span></div>
+
+        <div class="grid2" style="margin-top:6px;">
+          <div>
+            <label>Flytt av avlopp</label>
+            <div class="selectBtnWrap">
+              <select id="flyttAvlopp" class="selectBtn">
+                <option value="0" selected>Nej</option>
+                <option value="10000">Träbjälklag</option>
+                <option value="20000">Betongbjälklag</option>
+              </select>
+              <span class="chev">▾</span>
+            </div>
+          </div>
+
+          <div>
+            <label>Övrigt</label>
+            <button class="selectBtn" id="btnOther" type="button">Lägg till poster</button>
+          </div>
+        </div>
+
+        <div class="checkItem"><input id="hamtaKakel" type="checkbox"><span>Vi hämtar kakel & klinker åt kund (+5 000)</span></div>
+        <div class="checkItem"><input id="hamtaInredning" type="checkbox"><span>Vi hämtar badrumsinredning åt kund (+5 000)</span></div>
       </div>
     </div>
 
-    <!-- Modal: Övrigt -->
-    <div class="modalBack noPrint" id="modalBack">
-      <div class="modal">
-        <h3>Övrigt – Lägg till poster</h3>
-        <p class="sub" style="margin: 0 6px 10px;">Ex. fönsterbyte, bygga in badkar, specialönskemål. Belopp exkl. moms (innan ROT).</p>
+    <!-- PRIS + SAMMANFATTNING -->
+    <div class="card">
+      <div class="headRow">
+        <div>
+          <h2>Preliminärt pris & sammanfattning</h2>
+          <p class="sub">Priser är preliminära. Slutlig offert tas fram av entreprenören.</p>
+        </div>
+      </div>
 
-        <div class="otherRows" id="otherRows"></div>
+      <div class="priceBox" id="priceBox">
+        <div class="priceLine"><span>Delsumma (exkl. moms, inkl. 10% höjning)</span><strong id="sumEx">0 kr</strong></div>
+        <div class="priceLine"><span>ROT-avdrag</span><strong id="rotOut">0 kr</strong></div>
+        <div class="priceLine emph"><span>Pris efter ROT-avdrag (exkl. moms)</span><strong id="afterRotEx">0 kr</strong></div>
+        <div class="priceLine"><small>Pris efter ROT-avdrag (inkl. moms)</small><strong id="afterRotInc">0 kr</strong></div>
+        <div class="mutedHint">Texten ovan visar tydligt att priset är efter ROT-avdrag.</div>
+      </div>
 
-        <div class="modalFoot">
-          <button class="btn" id="addOtherRow" type="button">+ Ny rad</button>
-          <button class="btn" id="closeOther" type="button">Klar</button>
+      <div class="grid2" style="margin-top:14px;">
+        <div>
+          <label>Sammanfattning (kund + entreprenör)</label>
+          <textarea id="summaryExtra" placeholder="Ex. särskilda förutsättningar, tidsfönster, noteringar etc."></textarea>
+        </div>
+        <div>
+          <label>Visning / kopiera</label>
+          <textarea id="summaryOut" readonly placeholder="Tryck Beräkna pris så genereras sammanfattning här."></textarea>
+        </div>
+      </div>
+
+      <div class="btnGrid noPrint">
+        <button class="bigBtn primary" id="btnCalc" type="button">Beräkna pris</button>
+        <button class="bigBtn" id="btnCopy" type="button">Kopiera sammanfattning</button>
+        <button class="bigBtn" id="btnSave" type="button">Spara</button>
+        <button class="bigBtn outline" id="btnPdf" type="button">Spara som PDF</button>
+      </div>
+
+      <p class="mutedHint noPrint">
+        “Spara” och “Spara som PDF” öppnar en A4-sida. På iPhone väljer du Dela → Spara i Filer → iCloud Drive (delad mapp).
+      </p>
+    </div>
+
+    <!-- PRINT SHEET -->
+    <div class="printSheet" id="printSheet">
+      <div class="a4" id="a4">
+        <div class="logoRow">
+          <img id="logoImg" alt="PETRA" src="https://petrabadrum.github.io/petrabadrum/Petra%20Bygg.jpeg" />
+          <h1>PETRABADRUM – Offertunderlag</h1>
+        </div>
+
+        <div class="meta" id="metaBlock"></div>
+
+        <div class="section">
+          <h3>Val & information</h3>
+          <ul class="bullets" id="bullets"></ul>
+        </div>
+
+        <div class="section">
+          <h3>Noteringar</h3>
+          <div id="notes" style="font-size:12.5px; color:#1c2b44; line-height:1.4;"></div>
+        </div>
+
+        <div class="section">
+          <h3>Pris (efter ROT-avdrag)</h3>
+          <table class="priceTable">
+            <tbody id="priceParts"></tbody>
+            <tr>
+              <td class="tot">Uppskattat pris efter ROT-avdrag (exkl. moms)</td>
+              <td class="tot" id="totAfterRotEx">0 kr</td>
+            </tr>
+          </table>
+          <div class="note">
+            Etablering = 5% av totalen, Arbetskostnad = 55%, Materialkostnad = 40%.<br/>
+            Delsumman är beräknad med 10% prisjustering exkl. moms. Slutlig offert tas fram av entreprenör.
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 
-<script>
-/* =========================
-   PRISER (EXKL MOMS)
-   Alla priser höjs 10% i beräkningen (UPLIFT).
-   ========================= */
+  <!-- MODAL: Övrigt-poster -->
+  <div class="modalBg noPrint" id="modalBg" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modalHead">
+        <h3>Övrigt – lägg till poster</h3>
+        <button class="xBtn" id="btnCloseModal" type="button">✕</button>
+      </div>
 
-const UPLIFT = 1.10;
-const VAT = 1.25;
-
-// OBS: Behålla dörr/tröskel + golvstående WC ska vara 0 kr.
-// Hämtning: 5 000 kr/st.
-const PRICE = {
-  vh_wc: 0,
-  gs_wc: 0,
-  handdusch_wc: 2500,
-  badkar: 12000,
-  enbart_dusch: 0,
-  tvattmaskin: 8500,
-  sankt_innertak: 6500,
-  behalla_dorr_troskel: 0,
-  spackel_malning: 9500,
-  ny_dorr: 4500,
-  ny_troskel: 2500,
-  hamta_kakel: 5000,
-  hamta_inredning: 5000
-};
-
-const el = (id) => document.getElementById(id);
-
-const state = { other: [] };
-const LS_KEY = "petrabadrum_state_v2";
-
-function formatSEK(n){
-  const v = Math.max(0, Math.round(n));
-  return v.toLocaleString("sv-SE") + " kr";
-}
-
-/* ==============
-   PERSISTENS
-   ============== */
-function readForm(){
-  const ids = [
-    "kundnamn","adress","telefon","epost",
-    "datum","tid","motestyp","plats",
-    "rot","rotBelopp",
-    "vh_wc","gs_wc","handdusch_wc","badkar","enbart_dusch","tvattmaskin",
-    "sankt_innertak","behalla_dorr_troskel","spackel_malning","ny_dorr","ny_troskel",
-    "hamta_kakel","hamta_inredning",
-    "flytt_avlopp",
-    "notes"
-  ];
-  const obj = {};
-  ids.forEach(id=>{
-    const node = el(id);
-    if(!node) return;
-    if(node.type === "checkbox") obj[id] = node.checked;
-    else obj[id] = node.value ?? "";
-  });
-  obj.other = state.other;
-  return obj;
-}
-function writeForm(obj){
-  if(!obj) return;
-  Object.keys(obj).forEach(k=>{
-    if(k === "other") return;
-    const node = el(k);
-    if(!node) return;
-    if(node.type === "checkbox") node.checked = !!obj[k];
-    else node.value = obj[k];
-  });
-  state.other = Array.isArray(obj.other) ? obj.other : [];
-  renderOtherRows();
-  syncDateTimePills();
-}
-function saveToLS(){
-  try{ localStorage.setItem(LS_KEY, JSON.stringify(readForm())); }catch(e){}
-}
-function loadFromLS(){
-  try{
-    const raw = localStorage.getItem(LS_KEY);
-    if(!raw) return;
-    writeForm(JSON.parse(raw));
-  }catch(e){}
-}
-function bindAutoSave(){
-  document.addEventListener("input", (e)=>{
-    if(e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT")){
-      syncDateTimePills();
-      saveToLS();
-    }
-  });
-  document.addEventListener("change", ()=>{
-    syncDateTimePills();
-    saveToLS();
-  });
-}
-
-/* ==============
-   “PILL” DATE/TIME
-   ============== */
-function syncDateTimePills(){
-  const d = el("datum").value;
-  const t = el("tid").value;
-
-  const datePill = el("datePill");
-  const dateTxt = el("datePillText");
-  if(d){
-    datePill.classList.add("selected");
-    dateTxt.classList.remove("muted");
-    dateTxt.textContent = d;
-  }else{
-    datePill.classList.remove("selected");
-    dateTxt.classList.add("muted");
-    dateTxt.textContent = "Datum";
-  }
-
-  const timePill = el("timePill");
-  const timeTxt = el("timePillText");
-  if(t){
-    timePill.classList.add("selected");
-    timeTxt.classList.remove("muted");
-    timeTxt.textContent = t;
-  }else{
-    timePill.classList.remove("selected");
-    timeTxt.classList.add("muted");
-    timeTxt.textContent = "Tid";
-  }
-}
-function initPillClicks(){
-  el("datePill").addEventListener("click", ()=> el("datum").showPicker ? el("datum").showPicker() : el("datum").focus());
-  el("timePill").addEventListener("click", ()=> el("tid").showPicker ? el("tid").showPicker() : el("tid").focus());
-}
-
-/* ==============
-   ÖVRIGT MODAL
-   ============== */
-function renderOtherRows(){
-  const wrap = el("otherRows");
-  wrap.innerHTML = "";
-  if(state.other.length === 0) state.other.push({ text:"", amount:"" });
-
-  state.other.forEach((row, idx)=>{
-    const div = document.createElement("div");
-    div.className = "otherRow";
-
-    const t = document.createElement("input");
-    t.type = "text";
-    t.placeholder = "Beskrivning (ex. fönsterbyte)";
-    t.value = row.text || "";
-    t.addEventListener("input", ()=>{
-      state.other[idx].text = t.value;
-      saveToLS();
-    });
-
-    const a = document.createElement("input");
-    a.type = "number";
-    a.inputMode = "numeric";
-    a.placeholder = "Belopp";
-    a.min = "0";
-    a.step = "100";
-    a.value = row.amount ?? "";
-    a.addEventListener("input", ()=>{
-      state.other[idx].amount = a.value;
-      saveToLS();
-    });
-
-    const del = document.createElement("button");
-    del.className = "iconBtn";
-    del.type = "button";
-    del.textContent = "✕";
-    del.addEventListener("click", ()=>{
-      state.other.splice(idx,1);
-      if(state.other.length===0) state.other.push({text:"", amount:""});
-      renderOtherRows();
-      saveToLS();
-    });
-
-    div.appendChild(t);
-    div.appendChild(a);
-    div.appendChild(del);
-    wrap.appendChild(div);
-  });
-}
-function openOther(){ el("modalBack").style.display="flex"; }
-function closeOther(){ el("modalBack").style.display="none"; saveToLS(); }
-
-/* ==============
-   KALKYL
-   ============== */
-function getSelectedCostBase(){
-  let sum = 0;
-
-  // Kryssrutor med pris
-  Object.keys(PRICE).forEach(k=>{
-    const node = el(k);
-    if(node && node.type === "checkbox" && node.checked){
-      sum += (PRICE[k] || 0);
-    }
-  });
-
-  // Flytt av avlopp
-  const av = parseInt(el("flytt_avlopp").value || "0", 10);
-  sum += isNaN(av) ? 0 : av;
-
-  // Övrigt
-  for(const r of state.other){
-    const amt = parseFloat(r.amount || "0");
-    if(!isNaN(amt) && amt>0) sum += amt;
-  }
-  return sum;
-}
-
-function calcTotals(){
-  const base = getSelectedCostBase();
-  const uplifted = base * UPLIFT;
-
-  const rotOn = el("rot").checked;
-  const rotAmt = rotOn ? Math.max(0, parseFloat(el("rotBelopp").value || "0")) : 0;
-
-  const afterRot = Math.max(0, uplifted - rotAmt);
-  const afterRotInc = afterRot * VAT;
-
-  return { base, uplifted, rotAmt, afterRot, afterRotInc };
-}
-
-/* ==============
-   BYGG A4 (vit)
-   Behåll övre del till “Prisuppdelning”
-   Sen endast 5/55/40
-   ============== */
-
-function yesNo(b){ return b ? "Ja" : "Nej"; }
-
-function buildA4HTML(){
-  const { uplifted, rotAmt, afterRot, afterRotInc } = calcTotals();
-
-  const name = el("kundnamn").value.trim();
-  const addr = el("adress").value.trim();
-  const tel  = el("telefon").value.trim();
-  const mail = el("epost").value.trim();
-
-  const d = el("datum").value;
-  const t = el("tid").value;
-  const mt = el("motestyp").value;
-  const pl = el("plats").value.trim();
-
-  // Prisuppdelning på totalen EFTER ROT (exkl moms)
-  const total = afterRot;
-  const etablering = total * 0.05;
-  const arbete     = total * 0.55;
-  const material   = total * 0.40;
-
-  const hamtaKakel = el("hamta_kakel").checked;
-  const hamtaInred = el("hamta_inredning").checked;
-
-  // Övrigt-rader (för att det ska framgå)
-  const otherLines = state.other
-    .map(r => {
-      const txt = (r.text||"").trim();
-      const amt = Math.max(0, parseFloat(r.amount||"0") || 0);
-      if(!txt && !amt) return null;
-      return `<li>${escapeHtml(txt || "Övrigt")} – <strong>${formatSEK(amt)}</strong> (exkl. moms)</li>`;
-    })
-    .filter(Boolean)
-    .join("");
-
-  const notes = el("notes").value.trim();
-
-  // Byt till din faktiska loggfil i repo om du vill:
-  const LOGO_SRC = "Petra Bygg.jpeg"; // ex: "logo.png" om du har den i repo
-
-  return `
-  <!doctype html>
-  <html lang="sv">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Petrabadrum – Underlag</title>
-    <style>
-      body{ margin:0; background:#fff; font-family:-apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0b1a33; }
-      .page{
-        width: 210mm;
-        min-height: 297mm;
-        margin: 0 auto;
-        padding: 18mm 16mm;
-        box-sizing:border-box;
-      }
-      .header{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:16px;
-        border-bottom: 1px solid #e5e7eb;
-        padding-bottom: 10mm;
-        margin-bottom: 8mm;
-      }
-      .logo{
-        height: 22mm;
-        width:auto;
-        object-fit:contain;
-      }
-      .title{
-        text-align:right;
-      }
-      .title h1{ margin:0; font-size:18pt; letter-spacing:.2px; }
-      .title .sub{ margin-top:2mm; color:#4b5563; font-weight:700; }
-
-      h2{ margin: 8mm 0 3mm; font-size: 12.5pt; color:#163a7a; }
-      .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 6mm 10mm; }
-      .kv{
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        padding: 10px 12px;
-      }
-      .k{ color:#6b7280; font-weight:800; font-size:10pt; margin-bottom:2mm; }
-      .v{ font-weight:900; font-size:11pt; }
-
-      ul{ margin:3mm 0 0 5mm; }
-      li{ margin: 1.5mm 0; }
-
-      .sectionBox{
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 10px 12px;
-        margin-top: 4mm;
-      }
-      .priceTable{
-        width:100%;
-        border-collapse:collapse;
-        margin-top: 2mm;
-      }
-      .priceTable td{
-        padding: 3mm 0;
-        border-bottom: 1px solid #eef2f7;
-        font-size: 11pt;
-      }
-      .priceTable td:last-child{ text-align:right; font-weight:1000; }
-      .muted{ color:#6b7280; font-weight:800; }
-      .big{ font-size: 13pt; }
-      .note{
-        white-space: pre-wrap;
-        font-size: 10.5pt;
-        line-height: 1.35;
-      }
-      @media print{
-        @page{ size:A4; margin:0; }
-        .page{ padding: 18mm 16mm; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <div class="header">
+      <div class="grid2">
         <div>
-          <img class="logo" src="${LOGO_SRC}" alt="Petra Bygg & Renovering AB" onerror="this.style.display='none'">
-          <div style="font-weight:900; color:#163a7a; margin-top:2mm;">PETRA BYGG & RENOVERING AB</div>
+          <label>Beskrivning</label>
+          <input id="otherDesc" type="text" placeholder="Ex. Byta fönster / Bygga in badkar" />
         </div>
-        <div class="title">
-          <h1>Offertunderlag för badrumsrenovering</h1>
-          <div class="sub">Petrabadrum</div>
-        </div>
-      </div>
-
-      <!-- Behåll sammanfattningens övre del till Prisuppdelning -->
-      <h2>Kunduppgifter</h2>
-      <div class="grid2">
-        <div class="kv"><div class="k">Kundnamn</div><div class="v">${escapeHtml(name || "-")}</div></div>
-        <div class="kv"><div class="k">Adress</div><div class="v">${escapeHtml(addr || "-")}</div></div>
-        <div class="kv"><div class="k">Telefon</div><div class="v">${escapeHtml(tel || "-")}</div></div>
-        <div class="kv"><div class="k">E-post</div><div class="v">${escapeHtml(mail || "-")}</div></div>
-      </div>
-
-      <h2>Mötesdata</h2>
-      <div class="grid2">
-        <div class="kv"><div class="k">Datum</div><div class="v">${escapeHtml(d || "-")}</div></div>
-        <div class="kv"><div class="k">Tid</div><div class="v">${escapeHtml(t || "-")}</div></div>
-        <div class="kv"><div class="k">Mötestyp</div><div class="v">${escapeHtml(mt || "-")}</div></div>
-        <div class="kv"><div class="k">Plats</div><div class="v">${escapeHtml(pl || "-")}</div></div>
-      </div>
-
-      <h2>Service åt kund</h2>
-      <div class="sectionBox">
-        <ul>
-          <li>Vi hämtar kakel & klinker åt kund: <strong>${yesNo(hamtaKakel)}</strong>${hamtaKakel ? " (+5 000 kr)" : ""}</li>
-          <li>Vi hämtar badrumsinredning åt kund: <strong>${yesNo(hamtaInred)}</strong>${hamtaInred ? " (+5 000 kr)" : ""}</li>
-        </ul>
-      </div>
-
-      ${otherLines ? `
-      <h2>Övrigt</h2>
-      <div class="sectionBox">
-        <ul>${otherLines}</ul>
-      </div>` : ``}
-
-      ${notes ? `
-      <h2>Anteckningar</h2>
-      <div class="sectionBox note">${escapeHtml(notes)}</div>` : ``}
-
-      <h2>Prisuppdelning</h2>
-      <div class="sectionBox">
-        <div class="muted">Pris efter ROT-avdrag (exkl. moms)</div>
-        <div class="big" style="font-weight:1100; margin-top:2mm;">${formatSEK(total)}</div>
-
-        <table class="priceTable">
-          <tr><td>Etablering (5%)</td><td>${formatSEK(etablering)}</td></tr>
-          <tr><td>Arbetskostnad (55%)</td><td>${formatSEK(arbete)}</td></tr>
-          <tr><td>Materialkostnad (40%)</td><td>${formatSEK(material)}</td></tr>
-        </table>
-
-        <div style="margin-top:4mm; display:flex; justify-content:space-between; gap:10mm;">
-          <div class="muted">ROT-belopp</div>
-          <div style="font-weight:1000;">-${formatSEK(rotAmt)}</div>
-        </div>
-        <div style="margin-top:2mm; display:flex; justify-content:space-between; gap:10mm;">
-          <div class="muted">Pris efter ROT-avdrag (inkl. moms)</div>
-          <div style="font-weight:1100;">${formatSEK(afterRotInc)}</div>
+        <div>
+          <label>Belopp (kr)</label>
+          <input id="otherAmt" type="number" inputmode="numeric" min="0" step="100" placeholder="0" />
         </div>
       </div>
 
-      <div style="margin-top:10mm; color:#6b7280; font-size:9.5pt;">
-        Priset är preliminärt. Slutlig offert tas fram av entreprenör. Priser ovan avser efter ROT-avdrag.
+      <div class="btnGrid" style="margin-top:12px;">
+        <button class="bigBtn primary" id="btnAddOther" type="button">Lägg till</button>
+        <button class="bigBtn" id="btnClearOthers" type="button">Rensa alla</button>
       </div>
+
+      <div class="otherList" id="otherList"></div>
+
+      <p class="mutedHint">
+        Poster här räknas med i priset och visas i sammanfattning/PDF.
+      </p>
     </div>
-  </body>
-  </html>
-  `;
-}
+  </div>
 
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, (c)=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
-}
+  <script>
+    /* -------------------------
+       Grunddata / Priser
+       ------------------------- */
 
-/* ==============
-   KALENDER (ICS)
-   ============== */
-function pad2(n){ return String(n).padStart(2,"0"); }
-function toICSDateTime(dateStr, timeStr){
-  if(!dateStr || !timeStr) return null;
-  const [Y,M,D] = dateStr.split("-").map(Number);
-  const [h,m] = timeStr.split(":").map(Number);
-  return `${Y}${pad2(M)}${pad2(D)}T${pad2(h)}${pad2(m)}00`;
-}
-function download(filename, text, mime="text/plain"){
-  const blob = new Blob([text], {type:mime});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url), 1000);
-}
-function addToCalendar(){
-  const d = el("datum").value;
-  const t = el("tid").value;
-  if(!d || !t){ alert("Fyll i Datum och Tid först."); return; }
+    // Priser (exkl moms) – sedan +10% på totalen enligt instruktion.
+    // Du kan justera här när du vill.
+    const prices = {
+      // exempel – håll dessa enkla
+      tvattmaskin: 0,        // du har inte angivit pris, lämnas 0 om det bara är info
+      sanktInnertak: 0,      // okänt pris -> 0
+      spackelMal: 0,         // okänt pris -> 0
+      nyDor: 0,              // om du vill: lägg pris här
+      nyTroskel: 0,          // om du vill: lägg pris här
+      flyttAvloppTra: 10000,
+      flyttAvloppBetong: 20000,
+      hamta: 5000
+    };
 
-  const dtStart = toICSDateTime(d,t);
-  const end = new Date(`${d}T${t}:00`);
-  end.setMinutes(end.getMinutes()+60);
-  const dtEnd = `${end.getFullYear()}${pad2(end.getMonth()+1)}${pad2(end.getDate())}T${pad2(end.getHours())}${pad2(end.getMinutes())}00`;
+    const PRICE_UPLIFT = 1.10; // +10%
 
-  const title = `Kundbesök – ${el("kundnamn").value.trim() || "Petrabadrum"}`;
-  const loc = el("plats").value.trim() || el("adress").value.trim();
-  const desc = "Bokat via Petrabadrum (offertunderlag).";
+    /* -------------------------
+       Helpers
+       ------------------------- */
+    const kr = (n) => {
+      const x = Math.round(Number(n || 0));
+      return x.toLocaleString('sv-SE') + " kr";
+    };
 
-  const ics =
-`BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Petrabadrum//SE
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-DTSTART:${dtStart}
-DTEND:${dtEnd}
-SUMMARY:${title}
-LOCATION:${loc}
-DESCRIPTION:${desc}
-END:VEVENT
-END:VCALENDAR`;
+    const qs = (id) => document.getElementById(id);
 
-  download("kundbesok.ics", ics, "text/calendar");
-}
-
-/* ==============
-   Spara / PDF / Kopiera
-   ============== */
-
-function buildTextForCopy(){
-  const { uplifted, rotAmt, afterRot } = calcTotals();
-  const total = afterRot;
-  const etablering = total * 0.05;
-  const arbete     = total * 0.55;
-  const material   = total * 0.40;
-
-  const lines = [];
-  lines.push("Petrabadrum – Offertunderlag");
-  lines.push("");
-
-  lines.push("Kund:");
-  lines.push(`• Namn: ${el("kundnamn").value.trim() || "-"}`);
-  lines.push(`• Adress: ${el("adress").value.trim() || "-"}`);
-  lines.push(`• Telefon: ${el("telefon").value.trim() || "-"}`);
-  lines.push(`• E-post: ${el("epost").value.trim() || "-"}`);
-  lines.push("");
-
-  lines.push("Möte:");
-  lines.push(`• Datum: ${el("datum").value || "-"}`);
-  lines.push(`• Tid: ${el("tid").value || "-"}`);
-  lines.push(`• Mötestyp: ${el("motestyp").value || "-"}`);
-  lines.push(`• Plats: ${el("plats").value.trim() || "-"}`);
-  lines.push("");
-
-  lines.push("Service åt kund:");
-  lines.push(`• Hämtar kakel & klinker: ${el("hamta_kakel").checked ? "Ja (+5 000)" : "Nej"}`);
-  lines.push(`• Hämtar badrumsinredning: ${el("hamta_inredning").checked ? "Ja (+5 000)" : "Nej"}`);
-  lines.push("");
-
-  lines.push("Prisuppdelning (pris efter ROT-avdrag, exkl. moms):");
-  lines.push(`• Total: ${formatSEK(total)}`);
-  lines.push(`• Etablering (5%): ${formatSEK(etablering)}`);
-  lines.push(`• Arbetskostnad (55%): ${formatSEK(arbete)}`);
-  lines.push(`• Materialkostnad (40%): ${formatSEK(material)}`);
-  lines.push(`• ROT-belopp: -${formatSEK(rotAmt)}`);
-
-  return lines.join("\n");
-}
-
-function copyText(){
-  const txt = buildTextForCopy();
-  navigator.clipboard?.writeText(txt).then(()=>{
-    alert("Text kopierad.");
-  }).catch(()=>{
-    alert("Kunde inte kopiera automatiskt i denna webbläsare.");
-  });
-}
-
-async function savePack(){
-  // Spara som .html (A4) så du enkelt kan dela/spara i iCloud via Filer
-  const html = buildA4HTML();
-  const safeName = (el("kundnamn").value.trim() || "kund")
-    .replace(/[^\wåäöÅÄÖ\- ]+/g,"").trim().replace(/\s+/g,"_");
-  const filename = `Petrabadrum_${safeName}.html`;
-  download(filename, html, "text/html");
-
-  // Försök öppna delning (iOS)
-  try{
-    if(navigator.share){
-      const file = new File([html], filename, {type:"text/html"});
-      await navigator.share({ title: "Petrabadrum – underlag", files: [file] });
+    function setChosenState(el){
+      const v = (el.value ?? "").toString().trim();
+      // “Ej valt” markeras som inte valt
+      const notChosen = (v === "" || v === "Ej valt" || v === "0" && el.id !== "flyttAvlopp");
+      el.dataset.chosen = notChosen ? "0" : "1";
     }
-  }catch(e){}
-}
 
-function saveAsPDF(){
-  const html = buildA4HTML();
-  const w = window.open("", "_blank");
-  if(!w){ alert("Popup blockerad. Tillåt popup-fönster för att spara PDF."); return; }
-  w.document.open();
-  w.document.write(html);
-  w.document.close();
-  w.focus();
-  // Låt rendera och trigga print
-  setTimeout(()=> w.print(), 250);
-}
+    function buildDateOptions(){
+      const sel = qs("dateSelect");
+      const today = new Date();
+      for(let i=0;i<45;i++){
+        const d = new Date(today);
+        d.setDate(today.getDate()+i);
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth()+1).padStart(2,"0");
+        const dd = String(d.getDate()).padStart(2,"0");
+        const label = `${dd}/${mm}/${yyyy}`;
+        const opt = document.createElement("option");
+        opt.value = label;
+        opt.textContent = label;
+        sel.appendChild(opt);
+      }
+    }
 
-/* ==============
-   RESET
-   ============== */
-function resetAll(){
-  if(!confirm("Nollställ allt? (Detta rensar alla fält, val, Övrigt och sparad data.)")) return;
-  try{ localStorage.removeItem(LS_KEY); }catch(e){}
-  document.querySelectorAll("input, textarea, select").forEach(node=>{
-    if(node.type === "checkbox") node.checked = false;
-    else node.value = "";
-  });
-  state.other = [{text:"", amount:""}];
-  renderOtherRows();
-  syncDateTimePills();
-  saveToLS();
-}
+    function buildTimeOptions(){
+      const sel = qs("timeSelect");
+      for(let h=7; h<=20; h++){
+        for(let m=0; m<60; m+=15){
+          const HH = String(h).padStart(2,"0");
+          const MM = String(m).padStart(2,"0");
+          const t = `${HH}:${MM}`;
+          const opt = document.createElement("option");
+          opt.value = t;
+          opt.textContent = t;
+          sel.appendChild(opt);
+        }
+      }
+    }
 
-/* ==============
-   INIT
-   ============== */
-function init(){
-  bindAutoSave();
-  initPillClicks();
+    function buildYtaOptions(){
+      const sel = qs("yta");
+      for(let i=2; i<=20; i++){
+        const opt = document.createElement("option");
+        opt.value = String(i);
+        opt.textContent = `${i} m²`;
+        sel.appendChild(opt);
+      }
+    }
 
-  el("calendarIconBtn").addEventListener("click", addToCalendar);
-  el("calcBtn").addEventListener("click", ()=> alert("Klar. Använd 'Spara som PDF' för A4-sammanfattning."));
-  el("copyBtn").addEventListener("click", copyText);
-  el("saveBtn").addEventListener("click", savePack);
-  el("pdfBtn").addEventListener("click", saveAsPDF);
-  el("resetBtn").addEventListener("click", resetAll);
+    function buildTakhOptions(){
+      const sel = qs("takh");
+      for(let x=2.0; x<=3.0+1e-9; x+=0.1){
+        const v = x.toFixed(1).replace(".", ",");
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = `${v} m`;
+        sel.appendChild(opt);
+      }
+    }
 
-  el("otherBtn").addEventListener("click", openOther);
-  el("closeOther").addEventListener("click", closeOther);
-  el("modalBack").addEventListener("click", (e)=>{ if(e.target === el("modalBack")) closeOther(); });
-  el("addOtherRow").addEventListener("click", ()=>{
-    state.other.push({text:"", amount:""});
-    renderOtherRows();
-    saveToLS();
-  });
+    /* -------------------------
+       LocalStorage (så inget försvinner)
+       ------------------------- */
+    const STORE_KEY = "petrabadrum_v_fast";
 
-  renderOtherRows();
-  syncDateTimePills();
-  loadFromLS();
-}
-init();
-</script>
-</body>
-</html>
+    function collectState(){
+      const ids = [
+        "kundnamn","adress","telefon","epost",
+        "dateSelect","timeSelect","motestyp","plats",
+        "rotCheck","rotBelopp",
+        "niva","yta","takh","reserv",
+        "wcVagg","wcGolv","handdusch","badkar","enbartDusch",
+        "tvattmaskin","sanktInnertak","behallaDorTroskel",
+        "spackelMal","nyDor","nyTroskel",
+        "flyttAvlopp","hamtaKakel","hamtaInredning",
+        "summaryExtra",
+      ];
+
+      const s = {};
+      ids.forEach(id=>{
+        const el = qs(id);
+        if(!el) return;
+        if(el.type === "checkbox") s[id] = el.checked ? 1 : 0;
+        else s[id] = el.value ?? "";
+      });
+      s.otherItems = otherItems.slice();
+      return s;
+    }
+
+    function applyState(s){
+      if(!s) return;
+      Object.keys(s).forEach(id=>{
+        if(id==="otherItems") return;
+        const el = qs(id);
+        if(!el) return;
+        if(el.type === "checkbox") el.checked = !!s[id];
+        else el.value = s[id];
+      });
+      otherItems = Array.isArray(s.otherItems) ? s.otherItems : [];
+      refreshOtherList();
+      refreshChosen();
+    }
+
+    function saveState(){
+      try{
+       
