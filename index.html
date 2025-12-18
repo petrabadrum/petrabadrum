@@ -536,14 +536,35 @@ const STORAGE_KEY = "petrabadrum_form_v1";
 const LOGO_SRC = "logo.png"; // ändra om din fil heter annat
 
 /* Prislista – justera här.
-   Viktigt: Jag kan inte veta dina “ursprungspriser” om de ändrats i repo,
-   så här är upplägget robust + lätt att finjustera.
+   Basmodell uppdaterad: Fast del + per m² + minimidebitering.
+   Priser är exkl moms, innan +10% höjning.
 */
 const PRICES = {
   PCT_UPLIFT: 0.10,              // +10% exkl moms (enligt din instruktion)
   VAT: 0.25,
 
-  // Tillägg/val
+  // Baspris – NY MODELL
+  minBillableM2: 5,              // minimidebitering (t.ex. 3 m² debiteras som 5 m² i rörliga delen)
+  baseFixed: {
+    standard: 85000,
+    premium: 100000,
+    exclusive: 115000
+  },
+  basePerM2: {
+    standard: 7500,
+    premium: 9000,
+    exclusive: 10500
+  },
+
+  // Takhöjd kan påverka med faktor.
+  ceilingFactor: (h) => {
+    // Exempel: ingen ändring upp till 2.4, +5% över 2.5, +10% över 2.8
+    if (h >= 2.8) return 1.10;
+    if (h >= 2.5) return 1.05;
+    return 1.00;
+  },
+
+  // Tillägg/val (oförändrade från din fil)
   flyttAvlopp: { nej: 0, tra: 10000, betong: 20000 },
   hamtaService: 5000,            // per kryss
   nyDor: 0,                      // lägg pris om du vill prissätta
@@ -551,21 +572,7 @@ const PRICES = {
   undertak: 0,                   // lägg pris om du vill prissätta
   spacklaMala: 0,                // lägg pris om du vill prissätta
   tvattmaskin: 0,                // lägg pris om du vill prissätta
-  badkar: 0,                     // lägg pris om du vill prissätta
-
-  // Baspris – här behöver du lägga dina “app-priser”.
-  // Modell: bas = nivå * storlek. Takhöjd kan påverka med faktor.
-  basePerM2: {
-    standard: 0,
-    premium: 0,
-    exclusive: 0
-  },
-  ceilingFactor: (h) => {
-    // Exempel: ingen ändring upp till 2.4, +5% över 2.5, +10% över 2.8
-    if (h >= 2.8) return 1.10;
-    if (h >= 2.5) return 1.05;
-    return 1.00;
-  }
+  badkar: 0                      // lägg pris om du vill prissätta
 };
 
 /* =========================
@@ -771,7 +778,7 @@ function resetAll(){
   });
   el("flyttAvlopp").value = "nej";
   el("ovrigtList").innerHTML = "";
-  updatePriceUI(0,0);
+  updatePriceUI(0,0,0,0);
   markChosenUI();
 }
 
@@ -812,11 +819,15 @@ function escapeHtml(str){
 function calc(){
   const s = getState();
 
-  // Bas (nivå + storlek)
+  // Bas (NY MODELL: fast del + per m² med minimidebitering)
   let base = 0;
   if(s.niva && s.storlek){
+    const fixed = PRICES.baseFixed[s.niva] || 0;
     const per = PRICES.basePerM2[s.niva] || 0;
-    base = per * s.storlek;
+
+    const billableM2 = Math.max(s.storlek, PRICES.minBillableM2 || 0);
+    base = fixed + (per * billableM2);
+
     if(s.takh){
       base = base * PRICES.ceilingFactor(s.takh);
     }
@@ -894,15 +905,9 @@ function buildA4(){
   el("a4Takh").textContent = s.takh ? `${String(s.takh).replace(".", ",")} m` : "—";
   el("a4Rot").textContent = s.rotCheck ? (`Ja, ${fmt(s.rotBelopp||0)}`) : "Nej";
 
-  // Pris efter ROT (exkl moms)
-  const afterRotEx = Number((el("afterRotEx").textContent||"0").replace(/\s/g,"").replace("kr","").replace(/\./g,"").replace(",", ".")) || 0;
-  // Om parsing strular, räkna om:
-  // (vi tar säkrare via calc() i runtime, men här använder vi texten)
-
-  // bättre: räkna exakt igen:
+  // Räkna om säkert
   calc();
   const afterRotExTxt = el("afterRotEx").textContent;
-
   el("a4Pris").textContent = `${afterRotExTxt} (efter ROT, exkl. moms)`;
 
   // 5/55/40
