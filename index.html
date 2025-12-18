@@ -1,4 +1,4 @@
-<!doctype html>
+no<!doctype html>
 <html lang="sv">
 <head>
   <meta charset="utf-8" />
@@ -14,7 +14,7 @@
       --brand:#1d4ed8;
       --btn:#e9eef6;
       --btnText:#0f172a;
-      --pill:#f8fafc;
+      --pill:#f8fafc; ppl
       --chosenBg:#e8f5e9;
       --shadow:0 12px 26px rgba(15,23,42,.08);
       --radius:18px;
@@ -481,11 +481,19 @@ const PRICES = {
   hamtaService: 5000,
 
   // Baspris per m² (DU behåller dina nuvarande – lägg in exakt som i repo)
-  basePerM2: {
-    standard: 0,
-    premium: 0,
-    exclusive: 0
+  basePerM2: {const BASE_PRICING = {
+  start: {
+    standard: 115000,
+    premium: 135000,
+    exclusive: 165000
   },
+  perM2: {
+    standard: 6500,
+    premium: 8000,
+    exclusive: 9500
+  },
+  sizeFactor: (m2)=> 1.0
+  
   ceilingFactor: (h) => {
     if (h >= 2.8) return 1.10;
     if (h >= 2.5) return 1.05;
